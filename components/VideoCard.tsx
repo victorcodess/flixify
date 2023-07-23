@@ -9,19 +9,15 @@ const VideoCard = () => {
   return (
     <div className="relative">
       {" "}
-      <div className="absolute opacity-70 rounded-lg h-[140px] w-[240px] bg-gradient-to-t from-black to-transparent"></div>
-      <Image
-        src={bkMarkEmpty}
-        alt="logo"
-        className="absolute top-2 right-2"
-      />
+      <div className="absolute opacity-70 rounded-lg h-[140px] w-[240px] sm:w-[400px] sm:h-[230px]  bg-gradient-to-t from-black to-transparent"></div>
+      <Image src={bkMarkEmpty} alt="logo" className="absolute top-2 right-2 sm:top-4 sm:right-8 sm:w-[32px]" />
       <Image
         src={beyondEarth}
         alt="logo"
-        className="w-[240px] h-[140px] rounded-lg"
+        className="w-[240px] sm:w-[400px] sm:h-[230px] h-[140px] rounded-lg"
       />
-      <div className="absolute bottom-[16px] left-[16px] flex flex-col gap-1">
-        <div className="flex justify-center items-center gap-2 text-white/70 text-[12px] font-normal">
+      <div className="absolute bottom-[16px] sm:bottom-6 sm:left-6 left-[16px] flex flex-col gap-1">
+        <div className="flex justify-center items-center gap-2 text-white/70 text-[12px] sm:text-[15px] font-normal">
           <h3>2019</h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +58,7 @@ const VideoCard = () => {
           </svg>
           <h3>PG</h3>
         </div>
-        <h3 className="text-white font-medium text-[15px]">Beyond Earth</h3>
+        <h3 className="text-white font-medium text-[15px] sm:text-[24px]">Beyond Earth</h3>
       </div>
     </div>
   );
