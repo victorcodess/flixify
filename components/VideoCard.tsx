@@ -7,14 +7,14 @@ import bkMarkFull from "../public/assets/icon-bookmark-full.svg";
 
 const VideoCard = () => {
   return (
-    <div className="relative">
+    <div className="relative flex-shrink-0 w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] h-[140px]">
       {" "}
-      <div className="absolute opacity-70 rounded-lg h-[140px] w-[240px] sm:w-[400px] sm:h-[230px]  bg-gradient-to-t from-black to-transparent"></div>
-      <Image src={bkMarkEmpty} alt="logo" className="absolute top-2 right-2 sm:top-4 sm:right-8 sm:w-[32px]" />
+      <div className="absolute opacity-70 rounded-lg h-[140px] w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] bg-gradient-to-t from-black to-transparent"></div>
+      <Image src={bkMarkEmpty} alt="logo" className="absolute top-2 right-2 sm:top-4 sm:right-8 sm:w-[32px] lg:right-6" />
       <Image
         src={beyondEarth}
         alt="logo"
-        className="w-[240px] sm:w-[400px] sm:h-[230px] h-[140px] rounded-lg"
+        className="rounded-lg w-full h-full"
       />
       <div className="absolute bottom-[16px] sm:bottom-6 sm:left-6 left-[16px] flex flex-col gap-1">
         <div className="flex justify-center items-center gap-2 text-white/70 text-[12px] sm:text-[15px] font-normal">
