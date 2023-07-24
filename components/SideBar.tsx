@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const SideBar = () => {
   return (
-    <nav className="text-white bg-[#161D2F] my-0 left-0 right-0 lg:bottom-0 lg:my-auto lg:right-auto mx-auto justify-between items-center flex lg:flex-col lg:h-[90vh] w-full sm:h-[72px] h-[56px] lg:w-[96px] absolute lg:left-7 lg:top-0 sm:top-5 sm:w-[95.5%]  lg:rounded-2xl py-5 px-5 sm:px-7 lg:py-10 sm:rounded-xl">
+    <nav className="text-white bg-[#161D2F] my-0 left-0 right-0 lg:bottom-0 lg:my-auto lg:right-auto mx-auto justify-between items-center flex lg:flex-col lg:h-[90vh] w-full sm:h-[72px] h-[56px] lg:w-[96px] fixed lg:left-7 lg:top-0 sm:top-5 sm:w-[95.5%]  lg:rounded-2xl py-5 px-5 sm:px-7 lg:py-10 sm:rounded-xl">
       <Image src={logo} alt="logo" className="w-[25px] lg:w-[32px]" />
 
       <div className="flex gap-[24px] sm:gap-[32px] justify-center items-center lg:flex-col lg:mb-56">

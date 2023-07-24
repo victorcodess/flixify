@@ -1,5 +1,5 @@
 import React from "react";
-import VideoCard from "./VideoCard";
+import VideoCard from "./TrendingCard";
 
 const Trending = () => {
   return (
@@ -8,6 +8,7 @@ const Trending = () => {
         Trending
       </h1>
       <div className="flex gap-4 items-center justify-start w-full overflow-x-scroll ">
+        <VideoCard />
         <VideoCard />
         <VideoCard />
         <VideoCard />

@@ -1,23 +1,23 @@
 import React from "react";
 import Image from "next/image";
-import beyondEarth from "../public/assets/thumbnails/beyond-earth/trending/small.jpg";
+import theGreatLands from "../public/assets/thumbnails/the-great-lands/regular/medium.jpg";
 import movie from "../public/assets/icon-nav-movies.svg";
 import bkMarkEmpty from "../public/assets/Group 27.svg";
 import bkMarkFull from "../public/assets/icon-bookmark-full.svg";
 
-const VideoCard = () => {
+const RegularCard = () => {
   return (
-    <div className="relative flex-shrink-0 w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] h-[140px]">
-      {" "}
-      <div className="absolute opacity-70 rounded-lg h-[140px] w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] bg-gradient-to-t from-black to-transparent"></div>
-      <Image src={bkMarkEmpty} alt="logo" className="absolute top-2 right-2 sm:top-4 sm:right-8 sm:w-[32px] lg:right-6" />
+    <div className="relative flex-shrink-0 w-[100%]">
+      
+      <Image src={bkMarkEmpty} alt="logo" className="absolute cursor-pointer top-2 right-2 sm:top-4 sm:right-4 sm:w-[32px]" />
       <Image
-        src={beyondEarth}
+        src={theGreatLands}
         alt="logo"
-        className="rounded-lg w-full h-full"
+        className="rounded-lg w-full h-[110px] sm:h-[140px] lg:h-[174px] bg-cover bg-center"
       />
-      <div className="absolute bottom-[16px] sm:bottom-6 sm:left-6 left-[16px] flex flex-col gap-1">
-        <div className="flex justify-center items-center gap-2 text-white/70 text-[12px] sm:text-[15px] font-normal">
+
+      <div className="cursor-pointer flex flex-col gap-1 items-start justify-center  mt-2">
+        <div className="flex justify-center items-center gap-2 text-white/70 text-[12px] sm:text-[13px] font-normal">
           <h3>2019</h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -56,12 +56,12 @@ const VideoCard = () => {
           >
             <circle opacity="0.5" cx="1.5" cy="1.5" r="1.5" fill="white" />
           </svg>
-          <h3>PG</h3>
+          <h3>E</h3>
         </div>
-        <h3 className="text-white font-medium text-[15px] sm:text-[24px]">Beyond Earth</h3>
+        <h3 className="text-white font-medium text-[15px] sm:text-[18px]">The Great Lands</h3>
       </div>
     </div>
   );
 };
 
-export default VideoCard;
+export default RegularCard;
