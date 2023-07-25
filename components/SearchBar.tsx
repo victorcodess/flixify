@@ -13,7 +13,7 @@ const SearchBar = () => {
         <input
           type="search"
           id="default-search"
-          className="block w-[100%] font-light px-4 py-2 pl-14 sm:pr-[100px] text-[16px] sm:text-[24px] text-white bg-transparent focus:outline-0 border-b-2 border-[#161D2F]/0 focus:border-[#161D2F]/100 outline-none"
+          className="block w-[100%] font-light px-4 py-2 pl-14 sm:pr-[100px] text-[16px] sm:text-[24px] text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/0 hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 outline-none caret-[#FC4747]"
           placeholder="Search for movies or TV series"
           required
         />

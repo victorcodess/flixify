@@ -20,7 +20,7 @@ const SideBar = () => {
         {" "}
         <div className="w-4 h-4 sm:w-5 sm:h-5">
           <svg
-            className="fill-current text-[#FFF] hover:text-[#FC4747] cursor-pointer"
+            className="nav-icon fill-current text-[#FFF] hover:text-[#FC4747] cursor-pointer"
             viewBox="0 0 20 20" // Add viewBox attribute
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -28,7 +28,7 @@ const SideBar = () => {
           </svg>
         </div>
         <div className="w-4 h-4 sm:w-5 sm:h-5">
-          <svg className="fill-current text-[#5A698F] hover:text-[#FC4747] cursor-pointer"
+          <svg className="nav-icon fill-current text-[#5A698F] hover:text-[#FC4747] cursor-pointer"
             viewBox="0 0 20 20" // Add viewBox attribute
              xmlns="http://www.w3.org/2000/svg">
             <path
@@ -38,7 +38,7 @@ const SideBar = () => {
         </div>
         <div className="w-4 h-4 sm:w-5 sm:h-5">
           <svg
-            className="fill-current text-[#5A698F] hover:text-[#FC4747] cursor-pointer"
+            className="nav-icon fill-current text-[#5A698F] hover:text-[#FC4747] cursor-pointer"
             viewBox="0 0 20 20" // Add viewBox attribute
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -47,7 +47,7 @@ const SideBar = () => {
         </div>
         <div className="w-4 h-4 sm:w-5 sm:h-5">
           <svg
-            className="fill-current text-[#5A698F] hover:text-[#FC4747] cursor-pointer"
+            className="nav-icon fill-current text-[#5A698F] hover:text-[#FC4747] cursor-pointer"
             viewBox="0 0 20 20" // Add viewBox attribute
             xmlns="http://www.w3.org/2000/svg"
           >
