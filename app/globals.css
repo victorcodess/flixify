@@ -9,3 +9,15 @@ body {
 ::-webkit-scrollbar {
   width: 0px;
 }
+
+.trending:hover .play {
+  opacity: 1;
+}
+
+.regular:hover .play {
+  opacity: 1;
+}
+
+.play {
+  transition: all 0.5s ease;
+}

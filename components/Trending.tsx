@@ -1,5 +1,6 @@
 import React from "react";
-import VideoCard from "./TrendingCard";
+import TrendingCard from "./TrendingCard";
+import { videoData } from "@/utils/videoData";
 
 const Trending = () => {
   return (
@@ -8,11 +9,21 @@ const Trending = () => {
         Trending
       </h1>
       <div className="flex gap-4 items-center justify-start w-full overflow-x-scroll ">
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
+        {videoData.filter(video => video.isTrending == true).map((video, index) => {
+          return (
+            <TrendingCard
+              key={index}
+              title={video.title}
+              thumbnail={video.thumbnail}
+              year={video.year}
+              category={video.category}
+              rating={video.rating}
+              isBookmarked={video.isBookmarked}
+              isTrending={video.isTrending}
+            />
+          );
+        })}
+        
       </div>
     </div>
   );
