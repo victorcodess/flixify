@@ -1,5 +1,4 @@
 import React from "react";
-import TrendingCard from "./TrendingCard";
 import RegularCard from "./RegularCard";
 import { videoData } from "@/utils/videoData";
 

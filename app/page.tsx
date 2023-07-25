@@ -9,7 +9,7 @@ export default function Home() {
       {" "}
       <div className="w-[140px] h-[100vh] hidden lg:block"></div>
       <div className="lg:w-[87%] xl:w-[91%] w-[100%] flex flex-col justify-center items-center lg:mt-14">
-        <SearchBar />
+        <SearchBar placeholder="Search for movies or TV series"/>
         <Trending />
         <Recommended/>
       </div>
