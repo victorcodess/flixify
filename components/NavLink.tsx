@@ -11,8 +11,7 @@ interface NavLink {
 const NavLinks = ({ href, d }: NavLink) => {
   let segment = useSelectedLayoutSegment();
   let active = href === `/${segment}`;
-
-  console.log(href, active, segment);
+ 
 
   return (
     <Link href={href}>

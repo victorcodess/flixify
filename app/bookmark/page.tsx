@@ -13,7 +13,7 @@ export default function Home() {
       <div className="lg:w-[87%] xl:w-[91%] w-[100%] flex flex-col justify-center items-center lg:mt-14">
         <SearchBar placeholder={"Search for bookmarked shows"} />
 
-        <div className="flex flex-col items-start justify-center w-full gap-[16px] sm:gap-[25px] mt-[24px] mb-[61px] sm:mt-[34px] px-5">
+        <div className="flex flex-col items-start justify-center w-full gap-[16px] sm:gap-[25px] mt-[24px] mb-[40px] sm:mt-[34px] px-5">
           <h1 className="text-white text-[20px] sm:text-[32px] font-light">
             Bookmarked Movies
           </h1>
@@ -22,7 +22,7 @@ export default function Home() {
             {videoData
               .filter(
                 (video) =>
-                  video.category === "Movies" && video.isBookmarked === true
+                  video.category === "Movie" && video.isBookmarked === true
               )
               .map((video, index) => {
                 return (

@@ -11,7 +11,7 @@ export default function Home() {
       <div className="lg:w-[87%] xl:w-[91%] w-[100%] flex flex-col justify-center items-center lg:mt-14">
         <SearchBar placeholder="Search for movies or TV series"/>
         <Trending />
-        <Recommended/>
+        <Recommended />
       </div>
     </main>
   );
