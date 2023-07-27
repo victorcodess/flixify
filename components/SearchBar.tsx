@@ -1,4 +1,3 @@
-import React from "react";
 import search from "../public/assets/icon-search.svg";
 import Image from "next/image";
 

@@ -1,10 +1,6 @@
 "use client"
 
 import logo from "../public/assets/logo.svg";
-import tv from "../public/assets/icon-nav-tv-series.svg";
-import bkmark from "../public/assets/icon-nav-bookmark.svg";
-import movie from "../public/assets/icon-nav-movies.svg";
-import home from "../public/assets/icon-nav-home.svg";
 import user from "../public/assets/image-avatar.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,9 +10,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 
 const SideBar = () => {
   let segment = useSelectedLayoutSegment();
-  // let active = href === `/${segment}`;
 
-  // console.log(href, active, segment);
   return (
     <nav className="text-white z-30 bg-[#161D2F] my-0 left-0 right-0 lg:bottom-0 lg:my-auto lg:right-auto mx-auto justify-between items-center flex lg:flex-col lg:h-[90vh] w-full sm:h-[72px] h-[56px] lg:w-[96px] fixed lg:left-7 lg:top-0 sm:top-5 sm:w-[95.5%]  lg:rounded-2xl py-5 px-5 sm:px-7 lg:py-10 sm:rounded-xl">
       <Link href="/">

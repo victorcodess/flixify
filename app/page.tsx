@@ -1,4 +1,3 @@
-import Image from "next/image";
 import SearchBar from "@/components/SearchBar";
 import Trending from "@/components/Trending";
 import Recommended from "@/components/Recommended";

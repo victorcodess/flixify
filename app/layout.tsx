@@ -2,7 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import SideBar from "@/components/SideBar";
-import SearchBar from "@/components/SearchBar";
+import VideoProvider from "@/context/VideoContext";
+
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -20,8 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={outfit.className}>
         <SideBar />
-        {/* <SearchBar/> */}
+        <VideoProvider>
         {children}
+        </VideoProvider>
       </body>
     </html>
   );

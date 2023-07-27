@@ -1,15 +1,16 @@
+"use client"
 
-
-
-
-import Image from "next/image";
 import SearchBar from "@/components/SearchBar";
-import Trending from "@/components/Trending";
-import Recommended from "@/components/Recommended";
 import RegularCard from "../../components/RegularCard";
-import { videoData } from "@/utils/videoData";
-
+import { useContext } from "react";
+import {
+  VideoContext,
+  VideoContextInterface,
+} from "@/context/VideoContext";
 export default function Home() {
+  const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
+  console.log(videos);
+
   return (
     <main className="pt-[72px] sm:pt-28 lg:pt-0 flex justify-center items-start w-full">
       {" "}
@@ -21,9 +22,8 @@ export default function Home() {
       <h1 className="text-white text-[20px] sm:text-[32px] font-light">
        Movies
       </h1>
-      {/* <div></div> */}
       <div className="grid w-[100%]  grid-cols-2 grid-rows-1 place-content-center place-items-center gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">
-        {videoData
+        {videos
           .filter((video) => video.category === "Movie")
           .map((video, index) => {
             return (
