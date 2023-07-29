@@ -79,7 +79,7 @@ const TrendingCard = ({
         </svg>
       </div>
       <Image
-        src={convertPath(thumbnail.trending?.large)}
+        src={convertPath(thumbnail.trending?.large!)}
         width={1400}
         height={1400}
         alt="logo"
