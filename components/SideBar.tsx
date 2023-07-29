@@ -1,24 +1,27 @@
-"use client"
+"use client";
 
-import logo from "../public/assets/logo.svg";
 import user from "../public/assets/image-avatar.png";
 import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./NavLink";
 import { useSelectedLayoutSegment } from "next/navigation";
-
+import ThemeButton from "./ThemeButton";
 
 const SideBar = () => {
   let segment = useSelectedLayoutSegment();
 
   return (
-    <nav className="text-white z-30 bg-[#161D2F] my-0 left-0 right-0 lg:bottom-0 lg:my-auto lg:right-auto mx-auto justify-between items-center flex lg:flex-col lg:h-[90vh] w-full sm:h-[72px] h-[56px] lg:w-[96px] fixed lg:left-7 lg:top-0 sm:top-5 sm:w-[95.5%]  lg:rounded-2xl py-5 px-5 sm:px-7 lg:py-10 sm:rounded-xl">
+    <nav className="text-white z-30 bg-[#5A698F] dark:bg-[#161D2F] my-0 left-0 right-0 lg:bottom-0 lg:my-auto lg:right-auto mx-auto justify-between items-center flex lg:flex-col lg:h-[90vh] w-full sm:h-[72px] h-[56px] lg:w-[96px] fixed lg:left-7 lg:top-0 sm:top-5 sm:w-[95.5%]  lg:rounded-2xl py-5 px-5 sm:px-7 lg:py-10 sm:rounded-xl">
       <Link href="/">
-        <Image
-          src={logo}
-          alt="logo"
-          className="w-[25px] cursor-pointer lg:w-[32px]"
-        />
+        <div className="w-[25px] h-[25px] cursor-pointer lg:w-[32px] lg:h-[32px]">
+          <svg
+            className="fill-current text-[#650101] dark:text-[#FC4747]"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="m26.463.408 3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-1.6a3.186 3.186 0 0 0-3.184 3.2l-.016 19.2a3.2 3.2 0 0 0 3.2 3.2h25.6a3.2 3.2 0 0 0 3.2-3.2V.408h-6.4Z" />
+          </svg>
+        </div>
       </Link>
 
       <div className="flex gap-[24px] sm:gap-[32px] lg:flex-col lg:mb-56 items-center justify-center lg:items-center lg:justify-center">
@@ -26,8 +29,10 @@ const SideBar = () => {
           <div className="w-4 h-4 sm:w-5 sm:h-5">
             <svg
               className={`nav-icon fill-current ${
-                !segment ? "text-[#FFF]" : "text-[#5A698F]"
-              }  hover:text-[#FC4747] cursor-pointer`}
+                !segment
+                  ? "text-[#E0E3EB] dark:text-white"
+                  : "text-[#161D2F] dark:text-[#5A698F]"
+              }  hover:text-[#650101] dark:hover:text-[#FC4747] cursor-pointer`}
               viewBox="0 0 20 20" // Add viewBox attribute
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -54,11 +59,14 @@ const SideBar = () => {
           }
         />
       </div>
-      <Image
-        src={user}
-        alt="user"
-        className="w-[24px] cursor-pointer sm:w-[32px] lg:w-[40px] border-2 border-white rounded-full"
-      />
+      <div className="flex gap-[24px] sm:gap-[32px] lg:flex-col items-center justify-center lg:items-center lg:justify-center">
+        {/* <Image
+          src={user}
+          alt="user"
+          className="w-[24px] cursor-pointer sm:w-[32px] lg:w-[40px] border-2 border-white rounded-full"
+        /> */}
+        <ThemeButton />
+      </div>
     </nav>
   );
 };

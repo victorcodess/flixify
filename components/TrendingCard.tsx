@@ -4,7 +4,7 @@ import Image from "next/image";
 import { videoProps } from "@/utils/videoData";
 import play from "../public/assets/Group 3.png";
 import convertPath from "@/utils/convertPath";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import {
   VideoContext,
   VideoContextInterface,
@@ -79,7 +79,7 @@ const TrendingCard = ({
         </svg>
       </div>
       <Image
-        src={convertPath(thumbnail.trending?.large)}
+        src={convertPath(thumbnail.trending?.large ?? "")}
         width={1400}
         height={1400}
         alt="logo"

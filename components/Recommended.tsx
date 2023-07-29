@@ -20,11 +20,11 @@ const Recommended = ({ filter }: Filter) => {
   return (
     <div className="flex flex-col items-start justify-center w-full gap-[16px] sm:gap-[25px] mt-[24px] mb-[61px] sm:mt-[34px] px-5">
       {filter.toLowerCase() === "" ? (
-        <h1 className="text-white text-[20px] sm:text-[32px] font-light">
+        <h1 className="dark:text-white text-[#10141E] text-[20px] sm:text-[32px] font-light">
           Recommended For You
         </h1>
       ) : (
-        <h1 className="text-white text-[20px] sm:text-[32px] font-light">
+        <h1 className="dark:text-white text-[#10141E] text-[20px] sm:text-[32px] font-light">
           {`Found ${number} results for '${filter}'`}
         </h1>
       )}
