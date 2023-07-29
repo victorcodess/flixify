@@ -7,7 +7,7 @@ interface Thumbnail {
 export interface videoProps {
   title: string;
   thumbnail: {
-    trending: Thumbnail;
+    trending?: Thumbnail;
     regular: Thumbnail & { medium?: string }; // merging Thumbnail interface with an optional 'medium' property
   };
   year: number;

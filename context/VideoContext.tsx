@@ -10,14 +10,14 @@ import {
 import { videoProps, videoData } from "@/utils/videoData";
 
 export interface VideoContextInterface {
-  videos: videoProps;
-  setVideos: Dispatch<SetStateAction<videoProps>>;
+  videos: videoProps[]; // Update to an array of videoProps
+  setVideos: Dispatch<SetStateAction<videoProps[]>>; // Update to work with the array
 }
 
-const defaultState = {
-  video: videoData,
-  setVideos: (videos: videoProps) => {},
-} as VideoContextInterface;
+const defaultState: VideoContextInterface = {
+  videos: videoData, // Make sure videoData is an array of videoProps
+  setVideos: () => {},
+};
 
 export const VideoContext = createContext(defaultState);
 
@@ -27,11 +27,11 @@ type VideoProviderProps = {
 
 const getInitialState = () => {
   const videos = localStorage.getItem("videos");
-  return videos ? JSON.parse(videos) : defaultState;
+  return videos ? JSON.parse(videos) : videoData; // Use videoData as the initial state
 };
 
 export default function VideoProvider({ children }: VideoProviderProps) {
-  const [videos, setVideos] = useState<videoProps>(getInitialState);
+  const [videos, setVideos] = useState<videoProps[]>(getInitialState); // Update the type to an array of videoProps
 
   return (
     <VideoContext.Provider value={{ videos, setVideos }}>
