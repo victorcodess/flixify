@@ -25,7 +25,9 @@ const Recommended = ({ filter }: Filter) => {
         </h1>
       ) : (
         <h1 className="dark:text-white text-[#10141E] text-[20px] sm:text-[32px] font-light">
-          {`Found ${number} results for '${filter}'`}
+          {`Found ${number} ${
+                number === 1 ? "result" : "results"
+              } for '${filter}'`}
         </h1>
       )}
       <div className="grid w-[100%]  grid-cols-2 grid-rows-1 place-content-center place-items-center gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">

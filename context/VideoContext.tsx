@@ -26,7 +26,7 @@ type VideoProviderProps = {
 };
 
 const getInitialState = () => {
-  const videos = localStorage.getItem("videos");
+  const videos = sessionStorage.getItem("videos");
   return videos ? JSON.parse(videos) : videoData; // Use videoData as the initial state
 };
 
