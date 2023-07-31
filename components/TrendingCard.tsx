@@ -4,7 +4,7 @@ import Image from "next/image";
 import { videoProps } from "@/utils/videoData";
 import play from "../public/assets/Group 3.png";
 import convertPath from "@/utils/convertPath";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import {
   VideoContext,
   VideoContextInterface,
@@ -30,7 +30,7 @@ const TrendingCard = ({
   };
 
   useEffect(() => {
-    localStorage.setItem("videos", JSON.stringify(videos))
+    sessionStorage.setItem("videos", JSON.stringify(videos))
   })
 
   return (
@@ -79,7 +79,11 @@ const TrendingCard = ({
         </svg>
       </div>
       <Image
+<<<<<<< HEAD
         src={convertPath(thumbnail.trending?.large!)}
+=======
+        src={convertPath(thumbnail.trending?.large ?? "")}
+>>>>>>> c4427ad6356b48c08676032996b7250fa350f587
         width={1400}
         height={1400}
         alt="logo"

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import SideBar from "@/components/SideBar";
 import VideoProvider from "@/context/VideoContext";
-
+import Providers from "@/context/ThemeContext";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -18,12 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={outfit.className}>
-        <SideBar />
-        <VideoProvider>
-        {children}
-        </VideoProvider>
+    <html lang="en" className="light" style={{ colorScheme: "light" }}>
+      <body className={`${outfit.className} bg-[#E0E3EB] dark:bg-[#10141E]`}>
+        <Providers>
+          <VideoProvider>
+            {" "}
+            <SideBar />
+            {children}
+          </VideoProvider>
+        </Providers>
       </body>
     </html>
   );
