@@ -4,6 +4,7 @@ import SearchBar from "@/components/SearchBar";
 import RegularCard from "../../components/RegularCard";
 import { useContext, useState } from "react";
 import { VideoContext, VideoContextInterface } from "@/context/VideoContext";
+
 export default function Home() {
   const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
   const [filter, setFilter] = useState("");

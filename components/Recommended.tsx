@@ -26,8 +26,8 @@ const Recommended = ({ filter }: Filter) => {
       ) : (
         <h1 className="dark:text-white text-[#10141E] text-[20px] sm:text-[32px] font-light">
           {`Found ${number} ${
-                number === 1 ? "result" : "results"
-              } for '${filter}'`}
+            number === 1 ? "result" : "results"
+          } for '${filter}'`}
         </h1>
       )}
       <div className="grid w-[100%]  grid-cols-2 grid-rows-1 place-content-center place-items-center gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">
@@ -35,11 +35,6 @@ const Recommended = ({ filter }: Filter) => {
           .filter((video) => {
             return filter.toLowerCase() === ""
               ? video.isTrending === false
-              : video;
-          })
-          .filter((video) => {
-            return filter.toLowerCase() === ""
-              ? video
               : video.title.toLowerCase().includes(filter.toLowerCase());
           })
           .map((video, index) => {

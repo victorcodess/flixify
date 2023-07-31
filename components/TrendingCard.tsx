@@ -17,7 +17,6 @@ const TrendingCard = ({
   category,
   rating,
   isBookmarked,
-  isTrending,
 }: videoProps) => {
   const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
 

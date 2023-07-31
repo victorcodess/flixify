@@ -14,7 +14,6 @@ const RegularCard = ({
   category,
   rating,
   isBookmarked,
-  isTrending,
 }: videoProps) => {
   const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
 
