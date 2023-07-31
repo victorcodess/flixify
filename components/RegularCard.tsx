@@ -34,8 +34,8 @@ const RegularCard = ({
   })
 
   return (
-    <div className=" regular relative flex-shrink-0 w-[100%]">
-      <div className="z-10 opacity-0 play hidden lg:block absolute bg-black/80  w-full h-[110px] sm:h-[140px] lg:h-[174px]">
+    <div className=" regular relative flex-shrink-0 w-[100%] h-[300px]">
+      <div className="z-10 opacity-0 play hidden lg:block absolute bg-black/80  w-full h-[110px] sm:h-[140px] lg:h-[214px]">
         {" "}
         <Image
           src={play}
@@ -88,7 +88,8 @@ const RegularCard = ({
         width={1400}
         height={1400}
         alt="logo"
-        className="rounded-lg w-full h-[110px] sm:h-[140px] lg:h-[174px] bg-cover bg-center"
+        objectFit="cover"
+        className="rounded-lg w-full h-[250px] sm:h-[140px] lg:h-[214px] bg-cover bg-center"
       />
 
       <div className="cursor-pointer flex flex-col gap-1 items-start justify-center  mt-2">
