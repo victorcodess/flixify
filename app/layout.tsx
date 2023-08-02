@@ -17,13 +17,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const login = false;
+
   return (
     <html lang="en" className="light" style={{ colorScheme: "light" }}>
       <body className={`${outfit.className} bg-[#E0E3EB] dark:bg-[#10141E]`}>
         <Providers>
           <VideoProvider>
-            {" "}
-            <SideBar />
+            {login && <SideBar />}
             {children}
           </VideoProvider>
         </Providers>
