@@ -1,6 +1,12 @@
-import Link from "next/link";
+"use client";
 
-const page = () => {
+import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
+
+const LogIn = () => {
+  const { data: session } = useSession();
+  if (session && session.user) console.log(session.user);
+
   return (
     <div className="flex w-full h-[100vh] justify-center items-center">
       <div className="flex flex-col gap-[58.4px] sm:gap-[72.4px] lg:gap-[82.99px] justify-center items-center">
@@ -15,22 +21,22 @@ const page = () => {
         </div>
         <div className="p-6 sm:p-8 dark:bg-[#161D2F] rounded-[10px] flex flex-col justify-center items-center">
           <form
-            action="submit"
+            // action="submit"
             className="flex flex-col items-center justify-center"
           >
             <div className="flex flex-col justify-center items-start gap-10">
-              <h1 className="text-[32px] font-light text-white">Log In</h1>
+              <h1 className="text-[32px] font-light text-white">
+                Log In - {session && session?.user?.name}
+              </h1>
               <div className="flex flex-col justify-center items-center gap-6 w-[279px] sm:w-[336px]">
                 {" "}
                 <input
                   type="email"
-                  id="default-search"
                   className="block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Email address"
                 />
                 <input
                   type="password"
-                  id="default-search"
                   className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Password"
                 />
@@ -38,8 +44,9 @@ const page = () => {
             </div>
 
             <button
-              type="submit"
+              //   type="submit"
               className="text-white dark:bg-[#FC4747] mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center"
+              onClick={() => signIn()}
             >
               Login to your account
             </button>
@@ -58,4 +65,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default LogIn;

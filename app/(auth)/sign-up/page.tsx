@@ -1,6 +1,8 @@
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-const page = () => {
+const SignUp = () => {
+
   return (
     <div className="flex w-full h-[100vh] justify-center items-center">
       <div className="flex flex-col gap-[58.4px] sm:gap-[72.4px] lg:gap-[82.99px] justify-center items-center">
@@ -24,19 +26,16 @@ const page = () => {
                 {" "}
                 <input
                   type="email"
-                  id="default-search"
                   className="block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Email address"
                 />
                 <input
                   type="password"
-                  id="default-search"
                   className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Password"
                 />
                 <input
                   type="password"
-                  id="default-search"
                   className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Repeat password"
                 />
@@ -64,4 +63,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SignUp;
