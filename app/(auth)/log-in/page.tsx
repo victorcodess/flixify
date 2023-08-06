@@ -1,11 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useState } from "react";
 
 const LogIn = () => {
   const { data: session } = useSession();
   if (session && session.user) console.log(session.user);
+
+  const [userName, setUserName] = useState("");
+  const [pass, setPass] = useState("");
+
+  const username = userName;
+  const password = pass;
+
+  const onSubmitForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    signIn("credentials", {
+      username,
+      password,
+      redirect: true,
+      callbackUrl: "/log-in",
+    });
+  };
 
   return (
     <div className="flex w-full h-[100vh] justify-center items-center">
@@ -21,7 +38,7 @@ const LogIn = () => {
         </div>
         <div className="p-6 sm:p-8 dark:bg-[#161D2F] rounded-[10px] flex flex-col justify-center items-center">
           <form
-            // action="submit"
+            onSubmit={onSubmitForm}
             className="flex flex-col items-center justify-center"
           >
             <div className="flex flex-col justify-center items-start gap-10">
@@ -34,19 +51,22 @@ const LogIn = () => {
                   type="email"
                   className="block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Email address"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
                 />
                 <input
                   type="password"
                   className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Password"
+                  value={pass}
+                  onChange={(e) => setPass(e.target.value)}
                 />
               </div>
             </div>
 
             <button
-              //   type="submit"
+              type="submit"
               className="text-white dark:bg-[#FC4747] mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center"
-              onClick={() => signIn()}
             >
               Login to your account
             </button>
