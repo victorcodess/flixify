@@ -6,7 +6,6 @@ import { useState } from "react";
 
 const LogIn = () => {
   const { data: session } = useSession();
-  if (session && session.user) console.log(session.user);
 
   const [userName, setUserName] = useState("");
   const [pass, setPass] = useState("");
@@ -49,14 +48,14 @@ const LogIn = () => {
                 {" "}
                 <input
                   type="email"
-                  className="block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
+                  className="block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:dark:border-white focus:dark:border-white focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Email address"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                 />
                 <input
                   type="password"
-                  className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
+                  className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:dark:border-white focus:dark:border-white focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Password"
                   value={pass}
                   onChange={(e) => setPass(e.target.value)}
@@ -66,7 +65,7 @@ const LogIn = () => {
 
             <button
               type="submit"
-              className="text-white dark:bg-[#FC4747] mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center"
+              className="text-white hover:dark:bg-white hover:dark:text-black dark:bg-[#FC4747] mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center"
             >
               Login to your account
             </button>

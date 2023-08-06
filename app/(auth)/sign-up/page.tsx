@@ -1,7 +1,50 @@
-import { useSession } from "next-auth/react";
+"use client";
+
 import Link from "next/link";
+import { ChangeEvent, FormEvent, useState } from "react";
+
+interface FormData {
+  name: string;
+  email: string;
+  password: string;
+}
 
 const SignUp = () => {
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:3000/api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("User created successfully!");
+        // Handle success or redirect to another page if needed
+      } else {
+        console.error("Failed to create user.");
+        // Handle errors, show error messages, etc.
+      }
+    } catch (error) {
+      console.error("Error occurred:", error);
+      // Handle network errors or other exceptions
+    }
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   return (
     <div className="flex w-full h-[100vh] justify-center items-center">
@@ -17,7 +60,7 @@ const SignUp = () => {
         </div>
         <div className="p-6 sm:p-8 dark:bg-[#161D2F] rounded-[10px] flex flex-col justify-center items-center">
           <form
-            action="submit"
+            onSubmit={handleSubmit}
             className="flex flex-col items-center justify-center"
           >
             <div className="flex flex-col justify-center items-start gap-10">
@@ -25,18 +68,35 @@ const SignUp = () => {
               <div className="flex flex-col justify-center items-center gap-6 w-[279px] sm:w-[336px]">
                 {" "}
                 <input
+                  type="text"
+                  className="block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:dark:border-white focus:dark:border-white focus:border-[#5A698F]/100 caret-[#FC4747]"
+                  placeholder="Name"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                <input
                   type="email"
-                  className="block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
+                  className="block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:dark:border-white focus:dark:border-white focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Email address"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                 />
                 <input
                   type="password"
-                  className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
+                  className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:dark:border-white focus:dark:border-white focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                 />
                 <input
                   type="password"
-                  className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:border-[#5A698F]/100 focus:border-[#5A698F]/100 caret-[#FC4747]"
+                  className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:dark:border-white focus:dark:border-white focus:border-[#5A698F]/100 caret-[#FC4747]"
                   placeholder="Repeat password"
                 />
               </div>
@@ -44,7 +104,7 @@ const SignUp = () => {
 
             <button
               type="submit"
-              className="text-white dark:bg-[#FC4747] mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center"
+              className="text-white  hover:dark:bg-white hover:dark:text-black dark:bg-[#FC4747] mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center"
             >
               Create an account
             </button>
