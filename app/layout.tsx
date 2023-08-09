@@ -18,15 +18,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const login = true;
 
   return (
-    <html lang="en" className="light" style={{ colorScheme: "light" }}>
+    <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <body className={`${outfit.className} bg-[#E0E3EB] dark:bg-[#10141E]`}>
         <AuthContext>
         <Providers>
           <VideoProvider>
-            {login && <SideBar />}
+            <SideBar />
             {children}
           </VideoProvider>
         </Providers>

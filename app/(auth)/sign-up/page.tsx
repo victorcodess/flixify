@@ -89,7 +89,7 @@ const SignUp = () => {
             <path d="m26.463.408 3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-1.6a3.186 3.186 0 0 0-3.184 3.2l-.016 19.2a3.2 3.2 0 0 0 3.2 3.2h25.6a3.2 3.2 0 0 0 3.2-3.2V.408h-6.4Z" />
           </svg>
         </div>
-        <div className="p-6 sm:p-8 dark:bg-[#161D2F] rounded-[10px] flex flex-col justify-center items-center">
+        <div className="p-6 sm:p-8 bg-[#5A698F] dark:bg-[#161D2F] rounded-[10px] flex flex-col justify-center items-center">
           {confirm ? (
             <ConfirmationUI name={name} />
           ) : (
@@ -104,17 +104,17 @@ const SignUp = () => {
                   <div className="relative w-[279px] sm:w-[336px]">
                     <input
                       type="text"
-                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
+                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[white] placeholder-[#96abd6]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#96abd6]/100 ${
                         errors.name || (touchedFields.name && !dirtyFields.name)
-                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
-                          : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
+                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747] border-[#650101] focus:border-[#650101]"
+                          : "dark:border-[#5A698F]  border-[#fff] focus:dark:border-white hover:dark:border-white focus:border-[#96abd6] hover:border-[#96abd6]"
                       }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
                       placeholder="First name"
                       {...register("name", {
                         required: "Can't be empty",
                       })}
                     />
-                    <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
+                    <p className="dark:text-[#FC4747] text-[#650101] absolute right-0 top-[2px] text-[13px] font-light">
                       {touchedFields.name && !dirtyFields.name
                         ? "Can't be empty"
                         : errors.name?.message}
@@ -124,11 +124,11 @@ const SignUp = () => {
                   <div className="relative w-[279px] sm:w-[336px]">
                     <input
                       type="email"
-                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
+                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[white] placeholder-[#96abd6]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#96abd6]/100 ${
                         errors.email ||
                         (touchedFields.email && !dirtyFields.email)
-                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
-                          : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
+                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747] border-[#650101] focus:border-[#650101]"
+                          : "dark:border-[#5A698F]  border-[#fff] focus:dark:border-white hover:dark:border-white focus:border-[#96abd6] hover:border-[#96abd6]"
                       }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
                       placeholder="Email address"
                       {...register("email", {
@@ -140,7 +140,7 @@ const SignUp = () => {
                         },
                       })}
                     />
-                    <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
+                    <p className="dark:text-[#FC4747] text-[#650101] absolute right-0 top-[2px] text-[13px] font-light">
                       {touchedFields.email && !dirtyFields.email
                         ? "Can't be empty"
                         : errors.email?.message}
@@ -150,11 +150,11 @@ const SignUp = () => {
                   <div className="relative w-[279px] sm:w-[336px]">
                     <input
                       type="password"
-                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
+                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[white] placeholder-[#96abd6]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#96abd6]/100 ${
                         errors.password ||
                         (touchedFields.password && !dirtyFields.password)
-                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
-                          : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
+                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747] border-[#650101] focus:border-[#650101]"
+                          : "dark:border-[#5A698F]  border-[#fff] focus:dark:border-white hover:dark:border-white focus:border-[#96abd6] hover:border-[#96abd6]"
                       }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
                       placeholder="Password"
                       {...register("password", {
@@ -165,7 +165,7 @@ const SignUp = () => {
                         },
                       })}
                     />
-                    <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
+                    <p className="dark:text-[#FC4747] text-[#650101] absolute right-0 top-[2px] text-[13px] font-light">
                       {touchedFields.password && !dirtyFields.password
                         ? "Can't be empty"
                         : errors.password?.message}
@@ -175,11 +175,11 @@ const SignUp = () => {
                   <div className="relative w-[279px] sm:w-[336px]">
                     <input
                       type="password"
-                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
+                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[white] placeholder-[#96abd6]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#96abd6]/100 ${
                         errors.rePassword ||
                         (touchedFields.rePassword && !dirtyFields.rePassword)
-                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
-                          : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
+                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747] border-[#650101] focus:border-[#650101]"
+                          : "dark:border-[#5A698F]  border-[#fff] focus:dark:border-white hover:dark:border-white focus:border-[#96abd6] hover:border-[#96abd6]"
                       }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
                       placeholder="Repeat password"
                       {...register("rePassword", {
@@ -195,7 +195,7 @@ const SignUp = () => {
                         },
                       })}
                     />
-                    <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
+                    <p className="dark:text-[#FC4747] text-[#650101] absolute right-0 top-[2px] text-[13px] font-light">
                       {touchedFields.rePassword && !dirtyFields.rePassword
                         ? "Can't be empty"
                         : errors.rePassword?.message}
@@ -210,7 +210,7 @@ const SignUp = () => {
                 className={`${
                   isDirty && isValid && !isSubmitting
                     ? "dark:bg-[#FC4747] text-white hover:dark:bg-white hover:dark:text-black"
-                    : "dark:bg-gray-500 text-gray-800 cursor-not-allowed"
+                    : "dark:bg-gray-500 bg-gray-300 text-gray-800 cursor-not-allowedark:bg-gray-500 cursor-not-allowed"
                 } mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center`}
               >
                 {isSubmitting ? "Submitting" : "Create an account"}
