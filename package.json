@@ -25,10 +25,12 @@
     "postcss": "8.4.26",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.4",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@hookform/devtools": "^4.3.1",
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.2",
     "prettier": "^3.0.0",

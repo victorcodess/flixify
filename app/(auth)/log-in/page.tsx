@@ -2,29 +2,44 @@
 
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+
+type FormValues = {
+  email: string;
+  password: string;
+};
 
 const LogIn = () => {
+  const form = useForm<FormValues>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    mode: "onTouched",
+  });
+  const { register, control, handleSubmit, formState } = form;
+  const { errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting } =
+    formState;
+  console.log(isSubmitting);
+
   const { data: session } = useSession();
 
-  const [userName, setUserName] = useState("");
-  const [pass, setPass] = useState("");
+  const onSubmit = (data: FormValues) => {
+    console.log("Form submitted", data.email);
+    const username = data.email;
+    const password = data.password;
 
-  const username = userName;
-  const password = pass;
-
-  const onSubmitForm = (e: React.FormEvent) => {
-    e.preventDefault();
     signIn("credentials", {
       username,
       password,
       redirect: true,
-      callbackUrl: "/log-in",
+      callbackUrl: "/",
     });
   };
 
   return (
-    <div className="flex w-full h-[100vh] justify-center items-center">
+    <div className="flex w-full h-[100vh] justify-center items-center bg-[#E0E3EB] dark:bg-[#10141E]">
       <div className="flex flex-col gap-[58.4px] sm:gap-[72.4px] lg:gap-[82.99px] justify-center items-center">
         <div className="w-[32px] h-[32px] cursor-pointer ">
           <svg
@@ -37,47 +52,92 @@ const LogIn = () => {
         </div>
         <div className="p-6 sm:p-8 dark:bg-[#161D2F] rounded-[10px] flex flex-col justify-center items-center">
           <form
-            onSubmit={onSubmitForm}
+            // onSubmit={onSubmitForm}
+            onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col items-center justify-center"
+            noValidate
           >
             <div className="flex flex-col justify-center items-start gap-10">
               <h1 className="text-[32px] font-light text-white">
-                Log In - {session && session?.user?.name}
+                {session ? `Hello, ${session?.user?.name}.` : "Log In"}
               </h1>
-              <div className="flex flex-col justify-center items-center gap-6 w-[279px] sm:w-[336px]">
-                {" "}
-                <input
-                  type="email"
-                  className="block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:dark:border-white focus:dark:border-white focus:border-[#5A698F]/100 caret-[#FC4747]"
-                  placeholder="Email address"
-                  value={userName}
-                  onChange={(e) => setUserName(e.target.value)}
-                />
-                <input
-                  type="password"
-                  className="block w-[100%] font-light pb-[18px] pl-[16px] sm:pr-[100px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 dark:border-[#5A698F] hover:dark:border-white focus:dark:border-white focus:border-[#5A698F]/100 caret-[#FC4747]"
-                  placeholder="Password"
-                  value={pass}
-                  onChange={(e) => setPass(e.target.value)}
-                />
+              <div className="flex flex-col justify-center items-center gap-6">
+                <div className="relative w-[279px] sm:w-[336px]">
+                  <input
+                    type="email"
+                    className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
+                      errors.email ||
+                      (touchedFields.email && !dirtyFields.email)
+                        ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
+                        : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
+                    }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
+                    placeholder="Email address"
+                    {...register("email", {
+                      required: "Can't be empty",
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                        message: "Invalid email format",
+                      },
+                    })}
+                  />
+                  <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
+                    {touchedFields.email && !dirtyFields.email
+                      ? "Can't be empty"
+                      : errors.email?.message}
+                  </p>
+                </div>
+
+                <div className="relative w-[279px] sm:w-[336px]">
+                  <input
+                    type="password"
+                    className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
+                      errors.password ||
+                      (touchedFields.password && !dirtyFields.password)
+                        ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
+                        : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
+                    }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
+                    placeholder="Password"
+                    {...register("password", {
+                      required: "Can't be empty",
+                      pattern: {
+                        value: /(?=.{3,})/,
+                        message: "Must be at least 3 characters",
+                      },
+                    })}
+                  />
+                  <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
+                    {touchedFields.password && !dirtyFields.password
+                      ? "Can't be empty"
+                      : errors.password?.message}
+                  </p>
+                </div>
               </div>
             </div>
 
             <button
               type="submit"
-              className="text-white hover:dark:bg-white hover:dark:text-black dark:bg-[#FC4747] mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center"
+              disabled={!(isDirty && isValid && !isSubmitting)}
+              className={`${
+                isDirty && isValid && !isSubmitting
+                  ? "dark:bg-[#FC4747] text-white hover:dark:bg-white hover:dark:text-black"
+                  : "dark:bg-gray-500 text-gray-800 cursor-not-allowed"
+              } mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center`}
             >
-              Login to your account
+              {isSubmitting ? "Submitting" : "Login to your account"}
             </button>
 
             <p className="text-[15px] font-light mt-[24px] text-white">
               Don&apos;t have an account?{" "}
               <Link href="/sign-up">
                 {" "}
-                <span className="dark:text-[#FC4747]">Sign Up</span>
+                <span className="dark:text-[#FC4747] hover:dark:text-[#fff]">
+                  Sign Up
+                </span>
               </Link>
             </p>
           </form>
+          <DevTool control={control} />
         </div>
       </div>
     </div>
