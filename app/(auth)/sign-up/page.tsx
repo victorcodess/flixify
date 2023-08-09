@@ -1,5 +1,6 @@
 "use client";
 
+import ConfirmationUI from "@/components/ConfirmationUI";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -13,13 +14,8 @@ interface FormData {
 }
 
 const SignUp = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    password: "",
-    rePassword: "",
-  });
   const router = useRouter();
+  const [confirm, setConfirm] = useState(false);
 
   const form = useForm<FormData>({
     defaultValues: {
@@ -30,7 +26,7 @@ const SignUp = () => {
     },
     mode: "onTouched",
   });
-  const { register, control, handleSubmit, formState, reset, watch } = form;
+  const { register, handleSubmit, formState, reset, watch } = form;
   const {
     errors,
     touchedFields,
@@ -40,8 +36,8 @@ const SignUp = () => {
     isSubmitting,
     isSubmitSuccessful,
   } = formState;
-  console.log(isSubmitting);
   const pass = watch("password");
+  const name = watch("name");
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -59,6 +55,7 @@ const SignUp = () => {
 
       if (response.ok) {
         console.log("User created successfully!");
+        setConfirm(true);
         // Handle success or redirect to another page if needed
       } else {
         console.error("Failed to create user.");
@@ -71,11 +68,14 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-      router.push("/log-in");
+    if (confirm) {
+      const timer = setTimeout(() => {
+        router.push("/log-in");
+      }, 3000);
+
+      return () => clearTimeout(timer);
     }
-  }, [isSubmitSuccessful, router, reset]);
+  }, [confirm, router]);
 
   return (
     <div className="flex w-full h-[100vh] justify-center items-center">
@@ -90,137 +90,143 @@ const SignUp = () => {
           </svg>
         </div>
         <div className="p-6 sm:p-8 dark:bg-[#161D2F] rounded-[10px] flex flex-col justify-center items-center">
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col items-center justify-center"
-            noValidate
-          >
-            <div className="flex flex-col justify-center items-start gap-10">
-              <h1 className="text-[32px] font-light text-white">Sign Up</h1>
-              <div className="flex flex-col justify-center items-center gap-6">
-                <div className="relative w-[279px] sm:w-[336px]">
-                  <input
-                    type="text"
-                    className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
-                      errors.name || (touchedFields.name && !dirtyFields.name)
-                        ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
-                        : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
-                    }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
-                    placeholder="First name"
-                    {...register("name", {
-                      required: "Can't be empty",
-                    })}
-                  />
-                  <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
-                    {touchedFields.name && !dirtyFields.name
-                      ? "Can't be empty"
-                      : errors.name?.message}
-                  </p>
-                </div>
+          {confirm ? (
+            <ConfirmationUI name={name} />
+          ) : (
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col items-center justify-center"
+              noValidate
+            >
+              <div className="flex flex-col justify-center items-start gap-10">
+                <h1 className="text-[32px] font-light text-white">Sign Up</h1>
+                <div className="flex flex-col justify-center items-center gap-6">
+                  <div className="relative w-[279px] sm:w-[336px]">
+                    <input
+                      type="text"
+                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
+                        errors.name || (touchedFields.name && !dirtyFields.name)
+                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
+                          : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
+                      }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
+                      placeholder="First name"
+                      {...register("name", {
+                        required: "Can't be empty",
+                      })}
+                    />
+                    <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
+                      {touchedFields.name && !dirtyFields.name
+                        ? "Can't be empty"
+                        : errors.name?.message}
+                    </p>
+                  </div>
 
-                <div className="relative w-[279px] sm:w-[336px]">
-                  <input
-                    type="email"
-                    className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
-                      errors.email ||
-                      (touchedFields.email && !dirtyFields.email)
-                        ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
-                        : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
-                    }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
-                    placeholder="Email address"
-                    {...register("email", {
-                      required: "Can't be empty",
-                      pattern: {
-                        value:
-                          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                        message: "Invalid email format",
-                      },
-                    })}
-                  />
-                  <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
-                    {touchedFields.email && !dirtyFields.email
-                      ? "Can't be empty"
-                      : errors.email?.message}
-                  </p>
-                </div>
+                  <div className="relative w-[279px] sm:w-[336px]">
+                    <input
+                      type="email"
+                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
+                        errors.email ||
+                        (touchedFields.email && !dirtyFields.email)
+                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
+                          : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
+                      }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
+                      placeholder="Email address"
+                      {...register("email", {
+                        required: "Can't be empty",
+                        pattern: {
+                          value:
+                            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                          message: "Invalid email format",
+                        },
+                      })}
+                    />
+                    <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
+                      {touchedFields.email && !dirtyFields.email
+                        ? "Can't be empty"
+                        : errors.email?.message}
+                    </p>
+                  </div>
 
-                <div className="relative w-[279px] sm:w-[336px]">
-                  <input
-                    type="password"
-                    className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
-                      errors.password ||
-                      (touchedFields.password && !dirtyFields.password)
-                        ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
-                        : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
-                    }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
-                    placeholder="Password"
-                    {...register("password", {
-                      required: "Can't be empty",
-                      pattern: {
-                        value: /(?=.{3,})/,
-                        message: "Must be at least 3 characters",
-                      },
-                    })}
-                  />
-                  <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
-                    {touchedFields.password && !dirtyFields.password
-                      ? "Can't be empty"
-                      : errors.password?.message}
-                  </p>
-                </div>
+                  <div className="relative w-[279px] sm:w-[336px]">
+                    <input
+                      type="password"
+                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
+                        errors.password ||
+                        (touchedFields.password && !dirtyFields.password)
+                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
+                          : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
+                      }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
+                      placeholder="Password"
+                      {...register("password", {
+                        required: "Can't be empty",
+                        pattern: {
+                          value: /(?=.{3,})/,
+                          message: "Must be at least 3 characters",
+                        },
+                      })}
+                    />
+                    <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
+                      {touchedFields.password && !dirtyFields.password
+                        ? "Can't be empty"
+                        : errors.password?.message}
+                    </p>
+                  </div>
 
-                <div className="relative w-[279px] sm:w-[336px]">
-                  <input
-                    type="password"
-                    className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
-                      errors.rePassword ||
-                      (touchedFields.rePassword && !dirtyFields.rePassword)
-                        ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
-                        : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
-                    }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
-                    placeholder="Repeat password"
-                    {...register("rePassword", {
-                      required: "Can't be empty",
-                      pattern: {
-                        value: /(?=.{3,})/,
-                        message: "Must be at least 3 characters",
-                      },
-                      validate: (fieldValue) => {
-                        return fieldValue === pass || "Passwords do not match";
-                      },
-                    })}
-                  />
-                  <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
-                    {touchedFields.rePassword && !dirtyFields.rePassword
-                      ? "Can't be empty"
-                      : errors.rePassword?.message}
-                  </p>
+                  <div className="relative w-[279px] sm:w-[336px]">
+                    <input
+                      type="password"
+                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#10141E] placeholder-[#10141E]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#161D2F]/100 ${
+                        errors.rePassword ||
+                        (touchedFields.rePassword && !dirtyFields.rePassword)
+                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747]"
+                          : "dark:border-[#5A698F] focus:dark:border-white hover:dark:border-white"
+                      }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
+                      placeholder="Repeat password"
+                      {...register("rePassword", {
+                        required: "Can't be empty",
+                        pattern: {
+                          value: /(?=.{3,})/,
+                          message: "Must be at least 3 characters",
+                        },
+                        validate: (fieldValue) => {
+                          return (
+                            fieldValue === pass || "Passwords do not match"
+                          );
+                        },
+                      })}
+                    />
+                    <p className="text-[#FC4747] absolute right-0 top-[2px] text-[13px] font-light">
+                      {touchedFields.rePassword && !dirtyFields.rePassword
+                        ? "Can't be empty"
+                        : errors.rePassword?.message}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <button
-              type="submit"
-              disabled={!(isDirty && isValid && !isSubmitting)}
-              className={`${
-                isDirty && isValid && !isSubmitting
-                  ? "dark:bg-[#FC4747] text-white hover:dark:bg-white hover:dark:text-black"
-                  : "dark:bg-gray-500 text-gray-800 cursor-not-allowed"
-              } mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center`}
-            >
-              {isSubmitting ? "Submitting" : "Create an account"}
-            </button>
+              <button
+                type="submit"
+                disabled={!(isDirty && isValid && !isSubmitting)}
+                className={`${
+                  isDirty && isValid && !isSubmitting
+                    ? "dark:bg-[#FC4747] text-white hover:dark:bg-white hover:dark:text-black"
+                    : "dark:bg-gray-500 text-gray-800 cursor-not-allowed"
+                } mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center`}
+              >
+                {isSubmitting ? "Submitting" : "Create an account"}
+              </button>
 
-            <p className="text-[15px] font-light mt-[24px] text-white">
-              Already have an account?{" "}
-              <Link href="/log-in">
-                {" "}
-                <span className="dark:text-[#FC4747] hover:dark:text-[#fff]">
-                  Login
-                </span>
-              </Link>
-            </p>
-          </form>
+              <p className="text-[15px] font-light mt-[24px] text-white">
+                Already have an account?{" "}
+                <Link href="/log-in">
+                  {" "}
+                  <span className="dark:text-[#FC4747] hover:dark:text-[#fff]">
+                    Login
+                  </span>
+                </Link>
+              </p>
+            </form>
+          )}
         </div>
       </div>
     </div>

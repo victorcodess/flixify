@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@prisma/client": "^5.1.0",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",

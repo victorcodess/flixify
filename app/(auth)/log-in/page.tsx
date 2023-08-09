@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 
 type FormValues = {
   email: string;
@@ -18,7 +17,7 @@ const LogIn = () => {
     },
     mode: "onTouched",
   });
-  const { register, control, handleSubmit, formState } = form;
+  const { register, handleSubmit, formState } = form;
   const { errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting } =
     formState;
   console.log(isSubmitting);
@@ -52,7 +51,6 @@ const LogIn = () => {
         </div>
         <div className="p-6 sm:p-8 dark:bg-[#161D2F] rounded-[10px] flex flex-col justify-center items-center">
           <form
-            // onSubmit={onSubmitForm}
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col items-center justify-center"
             noValidate
@@ -137,7 +135,6 @@ const LogIn = () => {
               </Link>
             </p>
           </form>
-          <DevTool control={control} />
         </div>
       </div>
     </div>
