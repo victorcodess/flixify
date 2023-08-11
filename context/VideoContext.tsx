@@ -26,13 +26,22 @@ type VideoProviderProps = {
   children: ReactNode;
 };
 
-const getInitialState = () => {
-  const videos = sessionStorage.getItem("videos");
-  return videos ? JSON.parse(videos) : videoData; // Use videoData as the initial state
-};
+// const getInitialState = () => {
+//   const videos = sessionStorage.getItem("videos");
+//   return videos ? JSON.parse(videos) : videoData; // Use videoData as the initial state
+// };
 
 export default function VideoProvider({ children }: VideoProviderProps) {
-  const [videos, setVideos] = useState<videoProps[]>(getInitialState); // Update the type to an array of videoProps
+  const [videos, setVideos] = useState<videoProps[]>([]); // Update the type to an array of videoProps
+
+  useEffect(() => {
+    const getInitialState = () => {
+      const storedVideos = sessionStorage.getItem("videos");
+      return storedVideos ? JSON.parse(storedVideos) : videoData;
+    };
+
+    setVideos(getInitialState());
+  }, []);
 
   return (
     <VideoContext.Provider value={{ videos, setVideos }}>
