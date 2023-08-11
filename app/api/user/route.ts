@@ -6,7 +6,7 @@ interface RequestBody {
   email: string;
   password: string;
 }
-export async function POST(request?: Request | NextRequest) {
+export async function POST(request: Request | NextRequest) {
   const body: RequestBody = await request?.json();
 
   const user = await prisma.user.create({
