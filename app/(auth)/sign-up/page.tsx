@@ -24,20 +24,15 @@ const SignUp = () => {
     },
     mode: "onTouched",
   });
-  const { register, handleSubmit, formState, reset, watch } = form;
-  const {
-    errors,
-    touchedFields,
-    dirtyFields,
-    isDirty,
-    isValid,
-    isSubmitting,
-  } = formState;
+  const { register, handleSubmit, formState, watch } = form;
+  const { errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting } =
+    formState;
   const pass = watch("password");
 
   const onSubmit = async (data: FormData) => {
     try {
-      const response = await fetch("http://localhost:3000/api/user", {
+      const apiUrl = process.env.NEXTAUTH_URL;
+      const response = await fetch(`${apiUrl}/api/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +61,7 @@ const SignUp = () => {
     if (confirm) {
       const timer = setTimeout(() => {
         router.push("/log-in");
-      }, 3000);
+      }, 4000);
 
       return () => clearTimeout(timer);
     }
@@ -96,7 +91,6 @@ const SignUp = () => {
               <div className="flex flex-col justify-center items-start gap-10">
                 <h1 className="text-[32px] font-light text-white">Sign Up</h1>
                 <div className="flex flex-col justify-center items-center gap-6">
-
                   <div className="relative w-[279px] sm:w-[336px]">
                     <input
                       type="email"

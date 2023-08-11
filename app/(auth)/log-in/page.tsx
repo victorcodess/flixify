@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
@@ -19,11 +19,8 @@ const LogIn = () => {
     mode: "onTouched",
   });
   const { register, handleSubmit, formState } = form;
-  const { errors, touchedFields, dirtyFields, isDirty, isValid } =
-    formState;
+  const { errors, touchedFields, dirtyFields, isDirty, isValid } = formState;
   const [submitting, setSubmitting] = useState(false);
-
-  const { data: session } = useSession();
 
   const onSubmit = (data: FormValues) => {
     const username = data.email;
@@ -56,9 +53,7 @@ const LogIn = () => {
             noValidate
           >
             <div className="flex flex-col justify-center items-start gap-10">
-              <h1 className="text-[32px] font-light text-white">
-                {session ? `Hello, ${session?.user?.name}.` : "Log In"}
-              </h1>
+              <h1 className="text-[32px] font-light text-white">Log In</h1>
               <div className="flex flex-col justify-center items-center gap-6">
                 <div className="relative w-[279px] sm:w-[336px]">
                   <input
