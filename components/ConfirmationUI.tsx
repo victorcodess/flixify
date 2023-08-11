@@ -1,13 +1,8 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import { useEffect, useRef } from "react";
 
-interface NameProp {
-  name: string;
-}
-
-const ConfirmationUI = (name: NameProp) => {
+const ConfirmationUI = () => {
   const playerRef = useRef<Player>(null);
-  console.log(name);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -31,7 +26,7 @@ const ConfirmationUI = (name: NameProp) => {
       </div>
       <div className=" flex flex-col text-center justify-center items-center gap-4">
         <h1 className="text-[32px] font-light leading-10 text-white">
-          {`${name.name}, your account has been created`}
+          Your account has been created
         </h1>
         <p className="text-[15px] font-light text-[#9CA3AF]">
           Please hold on for a sec while we take you to the Login page.

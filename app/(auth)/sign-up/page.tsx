@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 interface FormData {
-  name: string;
   email: string;
   password: string;
   rePassword: string;
@@ -19,7 +18,6 @@ const SignUp = () => {
 
   const form = useForm<FormData>({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
       rePassword: "",
@@ -34,10 +32,8 @@ const SignUp = () => {
     isDirty,
     isValid,
     isSubmitting,
-    isSubmitSuccessful,
   } = formState;
   const pass = watch("password");
-  const name = watch("name");
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -47,7 +43,6 @@ const SignUp = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: data.name,
           email: data.email,
           password: data.password,
         }),
@@ -91,7 +86,7 @@ const SignUp = () => {
         </div>
         <div className="p-6 sm:p-8 bg-[#5A698F] dark:bg-[#161D2F] rounded-[10px] flex flex-col justify-center items-center">
           {confirm ? (
-            <ConfirmationUI name={name} />
+            <ConfirmationUI />
           ) : (
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -101,25 +96,6 @@ const SignUp = () => {
               <div className="flex flex-col justify-center items-start gap-10">
                 <h1 className="text-[32px] font-light text-white">Sign Up</h1>
                 <div className="flex flex-col justify-center items-center gap-6">
-                  <div className="relative w-[279px] sm:w-[336px]">
-                    <input
-                      type="text"
-                      className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[white] placeholder-[#96abd6]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#96abd6]/100 ${
-                        errors.name || (touchedFields.name && !dirtyFields.name)
-                          ? "dark:border-[#FC4747] focus:dark:border-[#FC4747] border-[#650101] focus:border-[#650101]"
-                          : "dark:border-[#5A698F]  border-[#fff] focus:dark:border-white hover:dark:border-white focus:border-[#96abd6] hover:border-[#96abd6]"
-                      }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
-                      placeholder="First name"
-                      {...register("name", {
-                        required: "Can't be empty",
-                      })}
-                    />
-                    <p className="dark:text-[#FC4747] text-[#650101] absolute right-0 top-[2px] text-[13px] font-light">
-                      {touchedFields.name && !dirtyFields.name
-                        ? "Can't be empty"
-                        : errors.name?.message}
-                    </p>
-                  </div>
 
                   <div className="relative w-[279px] sm:w-[336px]">
                     <input

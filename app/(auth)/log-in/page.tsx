@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 type FormValues = {
   email: string;
@@ -18,14 +19,13 @@ const LogIn = () => {
     mode: "onTouched",
   });
   const { register, handleSubmit, formState } = form;
-  const { errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting } =
+  const { errors, touchedFields, dirtyFields, isDirty, isValid } =
     formState;
-  console.log(isSubmitting);
+  const [submitting, setSubmitting] = useState(false);
 
   const { data: session } = useSession();
 
   const onSubmit = (data: FormValues) => {
-    console.log("Form submitted", data.email);
     const username = data.email;
     const password = data.password;
 
@@ -92,8 +92,8 @@ const LogIn = () => {
                     className={`block w-[100%] font-light pb-[18px] pl-[16px] text-[15px] text-[#fff] placeholder-[#96abd6]/70 dark:placeholder-[#9CA3AF] dark:text-white bg-transparent focus:outline-0 border-b-[1.5px] sm:border-b-2 border-[#96abd6]/100 ${
                       errors.password ||
                       (touchedFields.password && !dirtyFields.password)
-                      ? "dark:border-[#FC4747] focus:dark:border-[#FC4747] border-[#650101] focus:border-[#650101]"
-                      : "dark:border-[#5A698F]  border-[#fff] focus:dark:border-white hover:dark:border-white focus:border-[#96abd6] hover:border-[#96abd6]"
+                        ? "dark:border-[#FC4747] focus:dark:border-[#FC4747] border-[#650101] focus:border-[#650101]"
+                        : "dark:border-[#5A698F]  border-[#fff] focus:dark:border-white hover:dark:border-white focus:border-[#96abd6] hover:border-[#96abd6]"
                     }  focus:border-[#5A698F]/100 caret-[#FC4747]`}
                     placeholder="Password"
                     {...register("password", {
@@ -115,14 +115,15 @@ const LogIn = () => {
 
             <button
               type="submit"
-              disabled={!(isDirty && isValid && !isSubmitting)}
+              disabled={!(isDirty && isValid)}
               className={`${
-                isDirty && isValid && !isSubmitting
+                isDirty && isValid && !submitting
                   ? "dark:bg-[#FC4747] text-white hover:dark:bg-white hover:dark:text-black"
                   : "dark:bg-gray-500 bg-gray-300 text-gray-800 cursor-not-allowed"
               } mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center`}
+              onClick={() => setSubmitting(true)}
             >
-              {isSubmitting ? "Submitting" : "Login to your account"}
+              {submitting ? "Authenticating..." : "Login to your account"}
             </button>
 
             <p className="text-[15px] font-light mt-[24px] text-white">
