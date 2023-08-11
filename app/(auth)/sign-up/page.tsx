@@ -189,7 +189,7 @@ const SignUp = () => {
                     : "dark:bg-gray-500 bg-gray-300 text-gray-800 cursor-not-allowedark:bg-gray-500 cursor-not-allowed"
                 } mt-[40px] focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-light text-center`}
               >
-                {isSubmitting ? "Submitting" : "Create an account"}
+                {isSubmitting ? "Submitting..." : "Create an account"}
               </button>
 
               <p className="text-[15px] font-light mt-[24px] text-white">

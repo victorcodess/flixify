@@ -1,11 +1,12 @@
 import prisma from "@/lib/prisma";
 import * as bcrypt from "bcrypt";
+import { NextRequest } from "next/server";
 
 interface RequestBody {
   email: string;
   password: string;
 }
-export async function POST(request?: Request) {
+export async function POST(request?: Request | NextRequest) {
   const body: RequestBody = await request?.json();
 
   const user = await prisma.user.create({
