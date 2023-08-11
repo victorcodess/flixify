@@ -8,26 +8,26 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import ThemeButton from "./ThemeButton";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 
 const SideBar = () => {
   let segment = useSelectedLayoutSegment();
   const { data: session } = useSession();
   const [auth, setAuth] = useState(false);
-  
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     if (session && session.user) {
       setAuth(true);
     } else {
       setAuth(false);
     }
-  }, [session])
-  
-
+  }, [session]);
 
   return (
     <nav
       className={`${
-        auth ? "block" : "hidden"
+        auth ? "opacity-100" : "opacity-0"
       } text-white z-30 bg-[#5A698F] dark:bg-[#161D2F] my-0 left-0 right-0 lg:bottom-0 lg:my-auto lg:right-auto mx-auto justify-between items-center flex lg:flex-col lg:h-[90vh] w-full sm:h-[72px] h-[56px] lg:w-[96px] fixed lg:left-7 lg:top-0 sm:top-5 sm:w-[95.5%]  lg:rounded-2xl py-5 px-5 sm:px-7 lg:py-10 sm:rounded-xl`}
     >
       <Link href="/">
@@ -77,14 +77,55 @@ const SideBar = () => {
           }
         />
       </div>
-      <div className="flex gap-[24px] sm:gap-[32px] lg:flex-col items-center justify-center lg:items-center lg:justify-center">
+
+      <div className="flex gap-[24px] sm:gap-[32px] lg:flex-col items-center justify-center lg:items-center lg:justify-center ">
+        {open && (
+          <div
+            className="absolute w-[10000px] h-[10000px] bg-white opacity-0"
+            onClick={() => setOpen((prev) => !prev)}
+          ></div>
+        )}
+        <div
+          id="tooltip1"
+          role="tooltip"
+          className={` ${
+            open ? "opacity-100" : "opacity-0"
+          } z-20 w-28 sm:w-32 drop-shadow-[0_15px_35px_rgba(16,20,30,1)] absolute transition duration-150 ease-in-out top-12 right-5 sm:top-[60px] sm:right-7 lg:top-[78.3vh] lg:left-12 ml-8 shadow-lg bg-[#5A698F] dark:bg-[#161D2F] p-4 rounded-lg`}
+        >
+
+          <div className="flex justify-between items-center">
+            <div className="flex items-center">
+              <ThemeButton />
+            </div>
+
+            <div className="flex justify-center items-center">
+              <svg className="w-3 h-[20px] flex justify-center items-center">
+                <line
+                  x1="5"
+                  y1="0"
+                  x2="5"
+                  y2="20"
+                  className="stroke-current dark:text-[#5A698F]/50 text-[#161D2F]/50"
+                  strokeWidth="1.5"
+                />
+              </svg>
+            </div>
+
+            <div className="flex items-center">
+              <ArrowLeftOnRectangleIcon
+                className="w-6 sm:w-7 cursor-pointer text-[#161D2F] dark:text-[#96abd6] hover:dark:text-[#FC4747] hover:text-[#650101]"
+                onClick={() => signOut()}
+              />
+            </div>
+          </div>
+        </div>
+
         <Image
           src={user}
           alt="user"
           className="w-[24px] cursor-pointer sm:w-[32px] lg:w-[40px] border-2 border-white rounded-full"
-          onClick={() => signOut()}
+          onClick={() => setOpen((prev) => !prev)}
         />
-        {/* <ThemeButton /> */}
       </div>
     </nav>
   );
