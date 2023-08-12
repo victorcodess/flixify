@@ -21,7 +21,7 @@ const handler = NextAuth({
         // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
         // You can also use the `req` object to obtain additional parameters
         // (i.e., the request IP address)
-        const apiUrl = process.env.NEXTAUTH_URL
+        const apiUrl = process.env.NEXTAUTH_URL;
         const res = await fetch(`${apiUrl}/api/login`, {
           method: "POST",
           body: JSON.stringify({
@@ -55,6 +55,14 @@ const handler = NextAuth({
     async session({ session, token }) {
       session.user = token as any;
       return session;
+    },
+
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
     },
   },
 });
