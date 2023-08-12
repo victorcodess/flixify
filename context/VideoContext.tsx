@@ -32,7 +32,7 @@ type VideoProviderProps = {
 // };
 
 export default function VideoProvider({ children }: VideoProviderProps) {
-  const [videos, setVideos] = useState<videoProps[]>([]); // Update the type to an array of videoProps
+  const [videos, setVideos] = useState<videoProps[]>(videoData); // Update the type to an array of videoProps
 
   useEffect(() => {
     const getInitialState = () => {
