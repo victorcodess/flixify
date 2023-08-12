@@ -31,8 +31,7 @@ const SignUp = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const apiUrl = process.env.NEXTAUTH_URL;
-      const response = await fetch(`${apiUrl}/api/user`, {
+      const response = await fetch(`/api/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
