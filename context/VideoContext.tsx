@@ -36,7 +36,7 @@ export default function VideoProvider({ children }: VideoProviderProps) {
 
   useEffect(() => {
     const getInitialState = () => {
-      const storedVideos = sessionStorage.getItem("videos");
+      const storedVideos = localStorage.getItem("videos");
       return storedVideos ? JSON.parse(storedVideos) : videoData;
     };
 

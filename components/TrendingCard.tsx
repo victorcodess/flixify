@@ -29,7 +29,7 @@ const TrendingCard = ({
   };
 
   useEffect(() => {
-    sessionStorage.setItem("videos", JSON.stringify(videos))
+    localStorage.setItem("videos", JSON.stringify(videos))
   })
 
   return (
