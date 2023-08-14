@@ -6,21 +6,18 @@ import Link from "next/link";
 import NavLinks from "./NavLink";
 import { useSelectedLayoutSegment } from "next/navigation";
 import ThemeButton from "./ThemeButton";
-import { signOut, useSession } from "next-auth/react";
-import { useMemo, useState } from "react";
+import { signOut } from "next-auth/react";
+import { useState } from "react";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 
 const SideBar = () => {
   let segment = useSelectedLayoutSegment();
-  const { data: session } = useSession();
-  const auth = useMemo(() => session && session.user, [session]);
   const [open, setOpen] = useState(false);
-
 
   return (
     <nav
       className={`${
-        auth ? "opacity-100" : "opacity-0"
+        segment !== "(auth)" ? "block" : "hidden"
       } text-white z-30 bg-[#5A698F] dark:bg-[#161D2F] my-0 left-0 right-0 lg:bottom-0 lg:my-auto lg:right-auto mx-auto justify-between items-center flex lg:flex-col lg:h-[90vh] w-full sm:h-[72px] h-[56px] lg:w-[96px] fixed lg:left-7 lg:top-0 sm:top-5 sm:w-[95.5%]  lg:rounded-2xl py-5 px-5 sm:px-7 lg:py-10 sm:rounded-xl`}
     >
       <Link href="/">
@@ -77,6 +74,9 @@ const SideBar = () => {
             className="absolute w-[10000px] h-[10000px] bg-white opacity-0"
             onClick={() => setOpen((prev) => !prev)}
           ></div>
+        )}
+        {!open && (
+          <div className="z-30 opacity-0 w-28 sm:w-32 h-14 absolute transition duration-150 ease-in-out top-12 right-5 sm:top-[60px] sm:right-7 lg:top-[78.3vh] lg:left-12 ml-8 shadow-lg bg-[#5A698F] dark:bg-[#161D2F] p-4 rounded-lg"></div>
         )}
         <div
           id="tooltip1"
