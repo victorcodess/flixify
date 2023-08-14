@@ -8,13 +8,15 @@ const ThemeButton = () => {
   const { resolvedTheme, setTheme } = useTheme();
 
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  useEffect(() => setTheme("dark"), [setTheme]);
+  useEffect(() => {
+    setMounted(true);
+    setTheme("dark");
+  }, [setTheme]);
 
   if (!mounted) {
     return null;
   }
-  
+
   return (
     <button
       aria-label="Toggle Dark Mode"

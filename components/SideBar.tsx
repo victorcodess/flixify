@@ -7,22 +7,15 @@ import NavLinks from "./NavLink";
 import { useSelectedLayoutSegment } from "next/navigation";
 import ThemeButton from "./ThemeButton";
 import { signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 
 const SideBar = () => {
   let segment = useSelectedLayoutSegment();
   const { data: session } = useSession();
-  const [auth, setAuth] = useState(false);
+  const auth = useMemo(() => session && session.user, [session]);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    if (session && session.user) {
-      setAuth(true);
-    } else {
-      setAuth(false);
-    }
-  }, [session]);
 
   return (
     <nav
@@ -92,7 +85,6 @@ const SideBar = () => {
             open ? "opacity-100" : "opacity-0"
           } z-20 w-28 sm:w-32 drop-shadow-[0_15px_35px_rgba(16,20,30,1)] absolute transition duration-150 ease-in-out top-12 right-5 sm:top-[60px] sm:right-7 lg:top-[78.3vh] lg:left-12 ml-8 shadow-lg bg-[#5A698F] dark:bg-[#161D2F] p-4 rounded-lg`}
         >
-
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <ThemeButton />

@@ -2,9 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Player } from "@lottiefiles/react-lottie-player";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 const NotFound = () => {
   const playerRef = useRef<Player>(null);

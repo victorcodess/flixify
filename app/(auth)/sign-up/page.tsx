@@ -15,6 +15,7 @@ interface FormData {
 const SignUp = () => {
   const router = useRouter();
   const [confirm, setConfirm] = useState(false);
+  const [error, setError] = useState(false);
 
   const form = useForm<FormData>({
     defaultValues: {
@@ -48,6 +49,8 @@ const SignUp = () => {
         // Handle success or redirect to another page if needed
       } else {
         console.error("Failed to create user.");
+
+        if (response.status === 500) setError(true);
         // Handle errors, show error messages, etc.
       }
     } catch (error) {
@@ -66,8 +69,26 @@ const SignUp = () => {
     }
   }, [confirm, router]);
 
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(false);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
   return (
     <div className="flex w-full h-[100vh] justify-center items-center">
+      <div
+        className={`${
+          error ? "opacity-100" : "opacity-0"
+        } dark:bg-[#FC4747] text-white focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-medium uppercase text-center absolute top-4 flex items-center justify-center text-[14px] sm:text-[16px]`}
+      >
+        <h1>This account already exists</h1>
+      </div>
+
       <div className="flex flex-col gap-[58.4px] sm:gap-[72.4px] lg:gap-[82.99px] justify-center items-center">
         <div className="w-[32px] h-[32px] cursor-pointer ">
           <svg
