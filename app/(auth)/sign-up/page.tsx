@@ -150,12 +150,12 @@ const SignUp = () => {
                       {...register("password", {
                         required: "Can't be empty",
                         pattern: {
-                          value: /(?=.{3,})/,
-                          message: "Must be at least 3 characters",
+                          value: /(?=.*[a-zA-Z])(?=.*[0-9])(?=.{6,})/,
+                          message: "Must be at least 6 characters, with at least one number and one letter",
                         },
                       })}
                     />
-                    <p className="dark:text-[#FC4747] text-[#650101] absolute right-0 top-[2px] text-[13px] font-light">
+                    <p className="max-w-[200px] leading-[15px] dark:text-[#FC4747] text-[#650101] absolute right-0 top-[2px] text-[13px] font-light">
                       {touchedFields.password && !dirtyFields.password
                         ? "Can't be empty"
                         : errors.password?.message}

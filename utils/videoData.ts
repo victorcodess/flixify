@@ -110,7 +110,7 @@ export const videoData = [
     year: 2018,
     category: "TV Series",
     rating: "PG",
-    isBookmarked: true,
+    isBookmarked: false,
     isTrending: true,
   },
   {
@@ -155,7 +155,7 @@ export const videoData = [
     year: 2017,
     category: "Movie",
     rating: "18+",
-    isBookmarked: true,
+    isBookmarked: false,
     isTrending: false,
   },
   {
@@ -245,7 +245,7 @@ export const videoData = [
     year: 2015,
     category: "TV Series",
     rating: "E",
-    isBookmarked: true,
+    isBookmarked: false,
     isTrending: false,
   },
   {
@@ -260,7 +260,7 @@ export const videoData = [
     year: 2017,
     category: "Movie",
     rating: "PG",
-    isBookmarked: true,
+    isBookmarked: false,
     isTrending: false,
   },
   {
@@ -305,7 +305,7 @@ export const videoData = [
     year: 2021,
     category: "Movie",
     rating: "PG",
-    isBookmarked: true,
+    isBookmarked: false,
     isTrending: false,
   },
   {
@@ -320,7 +320,7 @@ export const videoData = [
     year: 2017,
     category: "Movie",
     rating: "18+",
-    isBookmarked: true,
+    isBookmarked: false,
     isTrending: false,
   },
   {
@@ -365,7 +365,7 @@ export const videoData = [
     year: 2017,
     category: "Movie",
     rating: "E",
-    isBookmarked: true,
+    isBookmarked: false,
     isTrending: false,
   },
   {
@@ -395,7 +395,7 @@ export const videoData = [
     year: 2016,
     category: "TV Series",
     rating: "E",
-    isBookmarked: true,
+    isBookmarked: false,
     isTrending: false,
   },
   {
@@ -440,7 +440,7 @@ export const videoData = [
     year: 2017,
     category: "Movie",
     rating: "18+",
-    isBookmarked: true,
+    isBookmarked: false,
     isTrending: false,
   },
   {
@@ -470,7 +470,7 @@ export const videoData = [
     year: 2017,
     category: "Movie",
     rating: "PG",
-    isBookmarked: true,
+    isBookmarked: false,
     isTrending: false,
   },
 ];
