@@ -31,7 +31,7 @@ const NotFound = () => {
 
       <p className="text-[15px] sm:text-[18px] font-light text-[#9CA3AF] mb-2 text-center">
         Return to our{" "}
-        <Link href="/" className="text-white hover:underline">
+        <Link href="/" className="text-white hover:underline" aria-label="Home">
           Home Page
         </Link>{" "}
         to explore from the beginning.

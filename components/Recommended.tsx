@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import RegularCard from "./RegularCard";
 import { useContext } from "react";
 import { VideoContext, VideoContextInterface } from "@/context/VideoContext";

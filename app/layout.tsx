@@ -12,7 +12,7 @@ const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Flixify",
-  description: "Entertainment Web App",
+  description: "Flixify lets you seamlessly explore movies and TV series, add bookmarks, and search across all pages.",
   generator: "Next.js",
   colorScheme: "dark",
   openGraph: {

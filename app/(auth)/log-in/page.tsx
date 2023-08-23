@@ -157,9 +157,8 @@ const LogIn = () => {
             </button>
 
             <p className="text-[15px] font-light mt-[24px] text-white">
-              Don&apos;t have an account?{" "}
-              <Link href="/sign-up">
-                {" "}
+              Don&apos;t have an account?
+              <Link href="/sign-up" aria-label="Sign Up">
                 <span className="dark:text-[#FC4747] hover:dark:text-[#fff]">
                   Sign Up
                 </span>

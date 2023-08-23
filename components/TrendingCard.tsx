@@ -39,7 +39,7 @@ const TrendingCard = ({
       <div className="z-10 opacity-0 play  lg:block absolute bg-black/70  h-[140px] w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] rounded-lg">
         <Image
           src={play}
-          alt="logo"
+          alt="Play Icon"
           className="rounded-lg cursor-pointer left-0 right-0 top-0 bottom-0 mx-auto my-auto absolute w-[117px]"
           // onClick={() => setClick(true)}
         />
@@ -83,7 +83,6 @@ const TrendingCard = ({
           </g>
         </svg>
       </div>
-
       <div className="h-full w-full flex items-center justify-center">
         <Image
           src={convertPath(thumbnail.trending?.large ?? "")}
@@ -93,10 +92,9 @@ const TrendingCard = ({
           className="h-full w-full rounded-lg bg-contain bg-center object-cover"
         />
       </div>
-      
       <div className="absolute items-start justify-center cursor-pointer bottom-[16px] sm:bottom-6 sm:left-6 left-[16px] flex flex-col gap-1">
         <div className="flex justify-center items-center gap-2 text-white/70 text-[12px] sm:text-[15px] font-normal">
-          <h3>{year}</h3>
+          <h5>{year}</h5>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="3"
@@ -140,7 +138,7 @@ const TrendingCard = ({
                 />
               </svg>
             )}{" "}
-            <h3>{category}</h3>
+            <h5>{category}</h5>
           </div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +149,7 @@ const TrendingCard = ({
           >
             <circle opacity="0.5" cx="1.5" cy="1.5" r="1.5" fill="white" />
           </svg>
-          <h3>{rating}</h3>
+          <h5>{rating}</h5>
         </div>
         <h3 className="text-white font-medium text-[15px] sm:text-[24px]">
           {title}

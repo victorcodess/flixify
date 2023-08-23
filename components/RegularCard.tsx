@@ -37,7 +37,7 @@ const RegularCard = ({
       <div className="z-10 opacity-0 play hidden lg:block absolute bg-black/80 rounded-lg  w-full h-[110px] sm:h-[140px] lg:h-[174px]">
         <Image
           src={play}
-          alt="logo"
+          alt="Play Icon"
           className="rounded-lg cursor-pointer left-0 right-0 top-0 bottom-0 mx-auto my-auto absolute w-[117px]"
         />
       </div>
@@ -93,7 +93,7 @@ const RegularCard = ({
 
       <div className="cursor-pointer flex flex-col gap-1 items-start justify-center  mt-2">
         <div className="flex justify-center items-center gap-2 dark:text-white/70 text-[#10141E]/70 text-[12px] sm:text-[13px] font-normal">
-          <h3>{year}</h3>
+          <h5>{year}</h5>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="3"
@@ -134,8 +134,8 @@ const RegularCard = ({
                   d="M5.448 2.68865H12V12H0V2.68865H2.952L1.332 0.72163L2.268 0.0174588L4.2 2.3453L6.132 0L7.068 0.72163L5.448 2.68865ZM1.2 3.85257V10.8361H7.2V3.85257H1.2ZM10.2 8.50824H9V7.34433H10.2V8.50824ZM9 6.18041H10.2V5.01649H9V6.18041Z"
                 />
               </svg>
-            )}{" "}
-            <h3>{category}</h3>
+            )}
+            <h5>{category}</h5>
           </div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,7 @@ const RegularCard = ({
           >
             <circle opacity="0.5" cx="1.5" cy="1.5" r="1.5" />
           </svg>
-          <h3>{rating}</h3>
+          <h5>{rating}</h5>
         </div>
         <h3 className="dark:text-white text-[#10141E] font-medium text-[15px] sm:text-[18px]">
           {title}

@@ -151,7 +151,8 @@ const SignUp = () => {
                         required: "Can't be empty",
                         pattern: {
                           value: /(?=.*[a-zA-Z])(?=.*[0-9])(?=.{6,})/,
-                          message: "Must be at least 6 characters, with at least one number and one letter",
+                          message:
+                            "Must be at least 6 characters, with at least one number and one letter",
                         },
                       })}
                     />
@@ -208,8 +209,7 @@ const SignUp = () => {
 
               <p className="text-[15px] font-light mt-[24px] text-white">
                 Already have an account?{" "}
-                <Link href="/log-in">
-                  {" "}
+                <Link href="/log-in" aria-label="Log In">
                   <span className="dark:text-[#FC4747] hover:dark:text-[#fff]">
                     Login
                   </span>

@@ -20,20 +20,21 @@ const SideBar = () => {
         segment !== "(auth)" ? "block" : "hidden"
       } text-white z-30 bg-[#5A698F] dark:bg-[#161D2F] my-0 left-0 right-0 lg:bottom-0 lg:my-auto lg:right-auto mx-auto justify-between items-center flex lg:flex-col lg:h-[93vh] w-full sm:h-[72px] h-[56px] lg:w-[96px] fixed lg:left-7 lg:top-0 sm:top-5 sm:w-[95.5%]  lg:rounded-2xl py-5 px-5 sm:px-7 lg:py-10 sm:rounded-xl`}
     >
-      <Link href="/">
+      <Link href="/" aria-label="Flixify Logo">
         <div className="w-[25px] h-[25px] cursor-pointer lg:w-[32px] lg:h-[32px]">
           <svg
             className="fill-current text-[#650101] dark:text-[#FC4747]"
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
           >
+            <title>Flixify</title>
             <path d="m26.463.408 3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-1.6a3.186 3.186 0 0 0-3.184 3.2l-.016 19.2a3.2 3.2 0 0 0 3.2 3.2h25.6a3.2 3.2 0 0 0 3.2-3.2V.408h-6.4Z" />
           </svg>
         </div>
       </Link>
 
       <div className="flex gap-[24px] sm:gap-[32px] lg:flex-col lg:mb-56 items-center justify-center lg:items-center lg:justify-center">
-        <Link href="/">
+        <Link href="/" aria-label="Home">
           <div className="w-4 h-4 sm:w-5 sm:h-5">
             <svg
               className={`nav-icon fill-current ${
@@ -44,6 +45,8 @@ const SideBar = () => {
               viewBox="0 0 20 20" // Add viewBox attribute
               xmlns="http://www.w3.org/2000/svg"
             >
+              <title>Home</title>
+
               <path d="M8 0H1C.4 0 0 .4 0 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1V1c0-.6-.4-1-1-1Zm0 11H1c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1v-7c0-.6-.4-1-1-1ZM19 0h-7c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1V1c0-.6-.4-1-1-1Zm0 11h-7c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1v-7c0-.6-.4-1-1-1Z" />
             </svg>
           </div>
@@ -86,7 +89,7 @@ const SideBar = () => {
           } z-20 w-28 sm:w-32 drop-shadow-[0_15px_35px_rgba(16,20,30,1)] absolute transition duration-150 ease-in-out top-12 right-5 sm:top-[60px] sm:right-7 lg:top-[78.3vh] lg:left-12 ml-8 shadow-lg bg-[#5A698F] dark:bg-[#161D2F] p-4 rounded-lg`}
         >
           <div className="flex justify-between items-center">
-            <div className="flex items-center">
+            <div className="flex items-center" title="Switch Theme">
               <ThemeButton />
             </div>
 
@@ -103,7 +106,7 @@ const SideBar = () => {
               </svg>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-center" title="Log Out">
               <ArrowLeftOnRectangleIcon
                 className="w-6 sm:w-7 cursor-pointer text-[#161D2F] dark:text-[#96abd6] hover:dark:text-[#FC4747] hover:text-[#650101]"
                 onClick={() => signOut()}
@@ -115,6 +118,7 @@ const SideBar = () => {
         <Image
           src={user}
           alt="user"
+          title="User"
           className="w-[24px] cursor-pointer sm:w-[32px] lg:w-[40px] border-2 border-white rounded-full"
           onClick={() => setOpen((prev) => !prev)}
         />
