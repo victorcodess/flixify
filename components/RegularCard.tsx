@@ -35,7 +35,6 @@ const RegularCard = ({
   return (
     <div className=" regular relative flex-shrink-0 w-[100%]">
       <div className="z-10 opacity-0 play hidden lg:block absolute bg-black/80 rounded-lg  w-full h-[110px] sm:h-[140px] lg:h-[174px]">
-        {" "}
         <Image
           src={play}
           alt="logo"
@@ -82,13 +81,15 @@ const RegularCard = ({
         </svg>
       </div>
 
-      <Image
-        src={convertPath(thumbnail.regular?.large)}
-        width={1400}
-        height={1400}
-        alt="logo"
-        className="rounded-lg w-full h-[110px] sm:h-[140px] lg:h-[174px] bg-cover bg-center"
-      />
+      <div className="h-[110px] w-full sm:h-[140px] lg:h-[174px]  flex items-center justify-center">
+        <Image
+          src={convertPath(thumbnail.regular?.large)}
+          width={1400}
+          height={1400}
+          alt={title}
+          className="h-full w-full rounded-lg bg-contain bg-center object-cover"
+        />
+      </div>
 
       <div className="cursor-pointer flex flex-col gap-1 items-start justify-center  mt-2">
         <div className="flex justify-center items-center gap-2 dark:text-white/70 text-[#10141E]/70 text-[12px] sm:text-[13px] font-normal">
@@ -103,7 +104,6 @@ const RegularCard = ({
             <circle opacity="0.5" cx="1.5" cy="1.5" r="1.5" />
           </svg>
           <div className="flex justify-center items-center gap-[6px]">
-            {" "}
             {category === "Movie" ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"

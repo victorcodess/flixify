@@ -29,7 +29,7 @@ const Recommended = ({ filter }: Filter) => {
               number === 1 ? "result" : "results"
             } for '${filter}'`}
       </h1>
-      <div className="grid w-[100%]  grid-cols-2 grid-rows-1 place-content-center place-items-center gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="grid w-[100%] grid-cols-2 grid-rows-1 place-content-center place-items-center gap-x-4 gap-y-4 sm:gap-x-[30px] sm:gap-y-6 lg:gap-x-10 lg:gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
         {filteredVideos.map((video, index) => {
           return (
             <RegularCard

@@ -83,13 +83,17 @@ const TrendingCard = ({
           </g>
         </svg>
       </div>
-      <Image
-        src={convertPath(thumbnail.trending?.large ?? "")}
-        width={1400}
-        height={1400}
-        alt="logo"
-        className="rounded-lg w-full h-full bg-cover bg-center"
-      />
+
+      <div className="h-full w-full flex items-center justify-center">
+        <Image
+          src={convertPath(thumbnail.trending?.large ?? "")}
+          width={1400}
+          height={1400}
+          alt={title}
+          className="h-full w-full rounded-lg bg-contain bg-center object-cover"
+        />
+      </div>
+      
       <div className="absolute items-start justify-center cursor-pointer bottom-[16px] sm:bottom-6 sm:left-6 left-[16px] flex flex-col gap-1">
         <div className="flex justify-center items-center gap-2 text-white/70 text-[12px] sm:text-[15px] font-normal">
           <h3>{year}</h3>
@@ -103,7 +107,6 @@ const TrendingCard = ({
             <circle opacity="0.5" cx="1.5" cy="1.5" r="1.5" fill="white" />
           </svg>
           <div className="flex justify-center items-center gap-[6px]">
-            {" "}
             {category === "Movie" ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"

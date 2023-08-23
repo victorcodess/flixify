@@ -41,7 +41,6 @@ const LogIn = () => {
 
   useEffect(() => {
     const url = `${pathname}?${searchParams}`;
-    console.log(pathname, searchParams, url);
 
     const getErrorValue = (url: string) => {
       const params = new URLSearchParams(url);
