@@ -35,16 +35,18 @@ const ThemeButton = () => {
       ) : (
         <MoonIcon className="w-6 sm:w-7 text-[#96abd6] hover:text-[#ffbf2a]" />
       )} */}
-
-      <DarkModeSwitch
-        style={{ transition: "nonee2xxwd" }}
-        className="toggle"
-        checked={isDarkMode}
-        onChange={toggleDarkMode}
-        size={28}
-        moonColor="#96abd6"
-        sunColor="#ffbf2a"
-      />
+      
+      <div className="dark-mode-switch-wrapper">
+        <DarkModeSwitch
+          style={{ transition: "none" }}
+          className="toggle"
+          checked={isDarkMode}
+          onChange={toggleDarkMode}
+          size={28}
+          moonColor="#96abd6"
+          sunColor="#ffbf2a"
+        />
+      </div>
     </button>
   );
 };

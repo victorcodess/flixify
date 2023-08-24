@@ -91,7 +91,7 @@ const RegularCard = ({
         />
       </div>
 
-      <div className="cursor-pointer flex flex-col gap-1 items-start justify-center  mt-2">
+      <div className="flex flex-col gap-1 items-start justify-center mt-2">
         <div className="flex justify-center items-center gap-2 dark:text-white/70 text-[#10141E]/70 text-[12px] sm:text-[13px] font-normal">
           <h5>{year}</h5>
           <svg

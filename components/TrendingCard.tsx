@@ -92,7 +92,7 @@ const TrendingCard = ({
           className="h-full w-full rounded-lg bg-contain bg-center object-cover"
         />
       </div>
-      <div className="absolute items-start justify-center cursor-pointer bottom-[16px] sm:bottom-6 sm:left-6 left-[16px] flex flex-col gap-1">
+      <div className="absolute items-start justify-center bottom-[16px] sm:bottom-6 sm:left-6 left-[16px] flex flex-col gap-1">
         <div className="flex justify-center items-center gap-2 text-white/70 text-[12px] sm:text-[15px] font-normal">
           <h5>{year}</h5>
           <svg

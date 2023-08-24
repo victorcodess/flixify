@@ -22,7 +22,7 @@
   transition: all 0.05s ease;
 }
 
-* {
+*:not(.dark-mode-switch-wrapper) {
   transition: all 0.5s ease;
 }
 
