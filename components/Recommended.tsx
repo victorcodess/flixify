@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import RegularCard from "./RegularCard";
 import { useContext } from "react";
 import { VideoContext, VideoContextInterface } from "@/context/VideoContext";
+import { ModalContext, ModalContextInterface } from "@/context/ModalContext";
 
 interface Filter {
   filter: string;
@@ -11,6 +12,8 @@ interface Filter {
 
 const Recommended = ({ filter }: Filter) => {
   const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
+  const { video, setVideo }: ModalContextInterface = useContext(ModalContext);
+
   const filteredVideos = useMemo(() => {
     return videos.filter((video) => {
       return filter.toLowerCase() === ""
@@ -36,11 +39,13 @@ const Recommended = ({ filter }: Filter) => {
               key={index}
               title={video.title}
               thumbnail={video.thumbnail}
+              video={video.video}
               year={video.year}
               category={video.category}
               rating={video.rating}
               isBookmarked={video.isBookmarked}
               isTrending={video.isTrending}
+              onClick={() => setVideo(video)}
             />
           );
         })}

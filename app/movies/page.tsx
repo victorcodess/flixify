@@ -4,11 +4,14 @@ import SearchBar from "@/components/SearchBar";
 import RegularCard from "../../components/RegularCard";
 import { useContext, useMemo, useState } from "react";
 import { VideoContext, VideoContextInterface } from "@/context/VideoContext";
+import { ModalContext, ModalContextInterface } from "@/context/ModalContext";
 
 export default function Home() {
   const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
+  const { video, setVideo }: ModalContextInterface = useContext(ModalContext);
+
   const [filter, setFilter] = useState("");
-  
+
   const filteredVideos = useMemo(() => {
     return videos.filter((video) => {
       const lowerCaseFilter = filter.toLowerCase();
@@ -42,11 +45,13 @@ export default function Home() {
                   key={index}
                   title={video.title}
                   thumbnail={video.thumbnail}
+                  video={video.video}
                   year={video.year}
                   category={video.category}
                   rating={video.rating}
                   isBookmarked={video.isBookmarked}
                   isTrending={video.isTrending}
+                  onClick={() => setVideo(video)}
                 />
               );
             })}

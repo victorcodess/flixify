@@ -3,6 +3,7 @@
 import TrendingCard from "./TrendingCard";
 import { useContext } from "react";
 import { VideoContext, VideoContextInterface } from "@/context/VideoContext";
+import { ModalContext, ModalContextInterface } from "@/context/ModalContext";
 
 interface Filter {
   filter: string;
@@ -10,6 +11,7 @@ interface Filter {
 
 const Trending = ({ filter }: Filter) => {
   const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
+  const { video, setVideo }: ModalContextInterface = useContext(ModalContext);
 
   return (
     <>
@@ -27,11 +29,13 @@ const Trending = ({ filter }: Filter) => {
                     key={index}
                     title={video.title}
                     thumbnail={video.thumbnail}
+                    video={video.video}
                     year={video.year}
                     category={video.category}
                     rating={video.rating}
                     isBookmarked={video.isBookmarked}
                     isTrending={video.isTrending}
+                    onClick={() => setVideo(video)}
                   />
                 );
               })}

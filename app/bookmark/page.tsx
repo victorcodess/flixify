@@ -4,11 +4,14 @@ import SearchBar from "@/components/SearchBar";
 import RegularCard from "../../components/RegularCard";
 import { useContext, useMemo, useState } from "react";
 import { VideoContext, VideoContextInterface } from "@/context/VideoContext";
+import { ModalContext, ModalContextInterface } from "@/context/ModalContext";
 
 export default function Home() {
   const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
+  const { video, setVideo }: ModalContextInterface = useContext(ModalContext);
+
   const [filter, setFilter] = useState("");
-  
+
   const filteredVideos = useMemo(() => {
     return videos.filter((video) => {
       const lowerCaseFilter = filter.toLowerCase();
@@ -56,17 +59,19 @@ export default function Home() {
             </p>
           ) : (
             <div className="grid w-[100%] grid-cols-2 grid-rows-1 place-content-center place-items-center gap-x-4 gap-y-4 sm:gap-x-[30px] sm:gap-y-6 lg:gap-x-10 lg:gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
-            {bkMovies.map((video, index) => {
+              {bkMovies.map((video, index) => {
                 return (
                   <RegularCard
                     key={index}
                     title={video.title}
                     thumbnail={video.thumbnail}
+                    video={video.video}
                     year={video.year}
                     category={video.category}
                     rating={video.rating}
                     isBookmarked={video.isBookmarked}
                     isTrending={video.isTrending}
+                    onClick={() => setVideo(video)}
                   />
                 );
               })}
@@ -88,17 +93,19 @@ export default function Home() {
             </p>
           ) : (
             <div className="grid w-[100%] grid-cols-2 grid-rows-1 place-content-center place-items-center gap-x-4 gap-y-4 sm:gap-x-[30px] sm:gap-y-6 lg:gap-x-10 lg:gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
-            {bkTvSeries.map((video, index) => {
+              {bkTvSeries.map((video, index) => {
                 return (
                   <RegularCard
                     key={index}
                     title={video.title}
                     thumbnail={video.thumbnail}
+                    video={video.video}
                     year={video.year}
                     category={video.category}
                     rating={video.rating}
                     isBookmarked={video.isBookmarked}
                     isTrending={video.isTrending}
+                    onClick={() => setVideo(video)}
                   />
                 );
               })}

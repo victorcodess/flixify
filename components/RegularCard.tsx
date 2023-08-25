@@ -4,8 +4,9 @@ import Image from "next/image";
 import { videoProps } from "@/utils/videoData";
 import play from "../public/assets/Group 3.png";
 import convertPath from "@/utils/convertPath";
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState } from "react";
 import { VideoContext, VideoContextInterface } from "@/context/VideoContext";
+import { ModalContext, ModalContextInterface } from "@/context/ModalContext";
 
 const RegularCard = ({
   title,
@@ -14,51 +15,78 @@ const RegularCard = ({
   category,
   rating,
   isBookmarked,
+  onClick,
 }: videoProps) => {
   const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
-  const [hover, setHover] = useState(false);
+  const { video, setVideo }: ModalContextInterface = useContext(ModalContext);
+
+  const [clicked, setclicked] = useState(false);
+
+  useEffect(() => {
+    if (video?.title === title) {
+      setclicked(true);
+    } else {
+      setclicked(false);
+    }
+  }, [video?.title, title]);
 
   const handleClick = () => {
-    const index: number = videos.findIndex((video) => title === video.title);
-    const newVideos = videos.slice();
-    const newVid = {
-      ...videos[index],
-      isBookmarked: !videos[index].isBookmarked,
-    };
-    newVideos[index] = newVid;
-    setVideos(newVideos);
+    setVideos((prevVideos) =>
+      prevVideos.map((video) =>
+        video.title === title
+          ? { ...video, isBookmarked: !video.isBookmarked }
+          : video
+      )
+    );
   };
 
   useEffect(() => {
     localStorage.setItem("videos", JSON.stringify(videos));
-  });
-
-  const vidRef = useRef<HTMLVideoElement | null>(null);
-
-  if (hover) {
-    if (vidRef.current) {
-      vidRef.current.play();
-    }
-  } else {
-    if (vidRef.current) {
-      vidRef.current.pause();
-      // vidRef.current.currentTime = 0;
-    }
-  }
+  }, [videos]);
 
   return (
     <div className=" relative flex-shrink-0 w-[100%]">
-      <div
-        className="regular h-[110px] w-full sm:h-[140px] lg:h-[174px]"
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-      >
+      <div className="regular h-[110px] w-full sm:h-[140px] lg:h-[174px]">
         <div className="z-10 opacity-0 play hidden lg:block absolute bg-black/80 rounded-lg  w-full h-[110px] sm:h-[140px] lg:h-[174px]">
           <Image
             src={play}
             alt="Play Icon"
             className="rounded-lg cursor-pointer left-0 right-0 top-0 bottom-0 mx-auto my-auto absolute w-[117px]"
+            onClick={onClick}
           />
+        </div>
+
+        <div
+          className="absolute z-20 cursor-pointer top-2 left-2 sm:top-4 sm:left-7 sm:w-[32px] lg:left-6 group lg:hidden"
+          onClick={onClick}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            className="group-hover:opacity-100"
+          >
+            <circle
+              opacity="0.500647"
+              cx="16"
+              cy="16"
+              r="16"
+              fill="#10141E"
+              className="group-hover:fill-white group-hover:opacity-100"
+            />
+            <path
+              d="M23.0147 16.2292L12.6912 22.1895C12.5147 22.2914 12.2941 22.1641 12.2941 21.9603L12.2941 10.0397C12.2941 9.83594 12.5147 9.70858 12.6912 9.81047L23.0147 15.7708C23.1912 15.8726 23.1912 16.1274 23.0147 16.2292Z"
+              stroke="white"
+              stroke-width="1.5"
+              className={`${
+                clicked
+                  ? "text-white group-hover:stroke-black group-hover:text-black"
+                  : "text-transparent group-hover:stroke-black"
+              }  fill-current`}
+            />
+          </svg>
         </div>
 
         <div
@@ -106,31 +134,8 @@ const RegularCard = ({
             width={1400}
             height={1400}
             alt={title}
-            className={`h-full ${
-              hover ? "opacity-100 lg:opacity-0" : "opacity-100 lg:opacity-100"
-            } w-full rounded-lg bg-contain bg-center object-cover absolute h-[110px] sm:h-[140px] lg:h-[174px]`}
+            className={`w-full rounded-lg bg-contain bg-center object-cover absolute h-[110px] sm:h-[140px] lg:h-[174px]`}
           />
-
-          <div className="opacity-0 hidden play lg:block absolute bg-black/70 h-[110px] w-full sm:h-[140px] lg:h-[174px] rounded-lg">
-            <video
-              // controls
-              ref={vidRef}
-              // autoPlay
-              loop
-              playsInline
-              muted
-              width={1080}
-              height={1080}
-              className={`h-full w-full ${
-                hover ? "opacity-0 lg:opacity-100" : "opacity-0 lg:opacity-100"
-              } rounded-lg bg-contain bg-center object-cover`}
-            >
-              <source
-                src="https://res.cloudinary.com/dge8nwzaw/video/upload/v1692910556/samples/elephants.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
         </div>
       </div>
 

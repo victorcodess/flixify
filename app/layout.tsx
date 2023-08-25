@@ -5,6 +5,8 @@ import SideBar from "@/components/SideBar";
 import VideoProvider from "@/context/VideoContext";
 import Providers from "@/context/ThemeContext";
 import AuthContext from "@/context/AuthContext";
+import VideoModal from "@/components/VideoModal";
+import ModalProvider from "@/context/ModalContext";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -64,17 +66,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
+  
   return (
     <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <body className={`${outfit.className} bg-[#E0E3EB] dark:bg-[#10141E]`}>
         <AuthContext>
-        <Providers>
-          <VideoProvider>
-            <SideBar />
-            {children}
-          </VideoProvider>
-        </Providers>
+          <Providers>
+            <VideoProvider>
+              <ModalProvider>
+                <SideBar />
+                <VideoModal />
+                {children}
+              </ModalProvider>
+            </VideoProvider>
+          </Providers>
         </AuthContext>
       </body>
     </html>

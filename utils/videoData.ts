@@ -10,11 +10,13 @@ export interface videoProps {
     trending?: Thumbnail;
     regular: Thumbnail & { medium?: string }; // merging Thumbnail interface with an optional 'medium' property
   };
+  video: string;
   year: number;
   category: string;
   rating: string;
   isBookmarked: boolean;
   isTrending: boolean;
+  onClick?: () => void;
 }
 
 export const videoData = [
@@ -31,6 +33,8 @@ export const videoData = [
         large: "./assets/thumbnails/beyond-earth/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996834/beyond_earth_zpiihw.mp4",
     year: 2019,
     category: "Movie",
     rating: "PG",
@@ -50,6 +54,8 @@ export const videoData = [
         large: "./assets/thumbnails/bottom-gear/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692997058/bottom_gear_smkife.mp4",
     year: 2021,
     category: "Movie",
     rating: "PG",
@@ -69,6 +75,8 @@ export const videoData = [
         large: "./assets/thumbnails/undiscovered-cities/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996817/undiscovered_cities_gnxryx.mp4",
     year: 2019,
     category: "TV Series",
     rating: "E",
@@ -88,6 +96,8 @@ export const videoData = [
         large: "./assets/thumbnails/1998/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996669/1998_wt3pls.mp4",
     year: 2021,
     category: "Movie",
     rating: "18+",
@@ -107,6 +117,8 @@ export const videoData = [
         large: "./assets/thumbnails/dark-side-of-the-moon/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996660/dark_side_of_the_moon_tmudvh.mp4",
     year: 2018,
     category: "TV Series",
     rating: "PG",
@@ -122,6 +134,8 @@ export const videoData = [
         large: "./assets/thumbnails/the-great-lands/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996795/the_great_lands_hfretd.mp4",
     year: 2019,
     category: "Movie",
     rating: "E",
@@ -137,6 +151,8 @@ export const videoData = [
         large: "./assets/thumbnails/the-diary/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996781/the_diary_r00rvj.mp4",
     year: 2019,
     category: "TV Series",
     rating: "PG",
@@ -152,6 +168,8 @@ export const videoData = [
         large: "./assets/thumbnails/earths-untouched/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996712/earth_s_untouched_bztxjb.mp4",
     year: 2017,
     category: "Movie",
     rating: "18+",
@@ -167,6 +185,8 @@ export const videoData = [
         large: "./assets/thumbnails/no-land-beyond/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996750/no_land_beyond_lxcsnq.mp4",
     year: 2019,
     category: "Movie",
     rating: "E",
@@ -182,6 +202,8 @@ export const videoData = [
         large: "./assets/thumbnails/during-the-hunt/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996725/during_the_hunt_t6ujo6.mp4",
     year: 2016,
     category: "TV Series",
     rating: "PG",
@@ -197,6 +219,8 @@ export const videoData = [
         large: "./assets/thumbnails/autosport-the-series/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996621/autosport_the_series_yxg8pv.mp4",
     year: 2016,
     category: "TV Series",
     rating: "18+",
@@ -212,6 +236,8 @@ export const videoData = [
         large: "./assets/thumbnails/same-answer-2/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996934/same_answer_ujf4l3.mp4",
     year: 2017,
     category: "Movie",
     rating: "E",
@@ -227,6 +253,8 @@ export const videoData = [
         large: "./assets/thumbnails/below-echo/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996655/below_echo_plbaib.mp4",
     year: 2016,
     category: "TV Series",
     rating: "PG",
@@ -242,6 +270,8 @@ export const videoData = [
         large: "./assets/thumbnails/the-rockies/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996815/the_rockies_k2xssp.mp4",
     year: 2015,
     category: "TV Series",
     rating: "E",
@@ -257,6 +287,8 @@ export const videoData = [
         large: "./assets/thumbnails/relentless/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996759/relentless_wzqers.mp4",
     year: 2017,
     category: "Movie",
     rating: "PG",
@@ -272,6 +304,8 @@ export const videoData = [
         large: "./assets/thumbnails/community-of-ours/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996671/community_of_ours_lw4sy5.mp4",
     year: 2018,
     category: "TV Series",
     rating: "18+",
@@ -287,6 +321,8 @@ export const videoData = [
         large: "./assets/thumbnails/van-life/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996818/van_life_gdd0ds.mp4",
     year: 2015,
     category: "Movie",
     rating: "PG",
@@ -302,6 +338,8 @@ export const videoData = [
         large: "./assets/thumbnails/the-heiress/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996900/the_heiress_wypki4.mp4",
     year: 2021,
     category: "Movie",
     rating: "PG",
@@ -317,6 +355,8 @@ export const videoData = [
         large: "./assets/thumbnails/off-the-track/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996736/off_the_track_hbphzo.mp4",
     year: 2017,
     category: "Movie",
     rating: "18+",
@@ -332,6 +372,8 @@ export const videoData = [
         large: "./assets/thumbnails/whispering-hill/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692910556/samples/elephants.mp4",
     year: 2017,
     category: "Movie",
     rating: "E",
@@ -347,6 +389,8 @@ export const videoData = [
         large: "./assets/thumbnails/112/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996628/112_q1ofsv.mp4",
     year: 2013,
     category: "TV Series",
     rating: "PG",
@@ -362,6 +406,8 @@ export const videoData = [
         large: "./assets/thumbnails/lone-heart/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692997058/lone_heart_hywt3k.mp4",
     year: 2017,
     category: "Movie",
     rating: "E",
@@ -377,6 +423,8 @@ export const videoData = [
         large: "./assets/thumbnails/production-line/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996746/production_line_u659yb.mp4",
     year: 2018,
     category: "TV Series",
     rating: "PG",
@@ -392,6 +440,8 @@ export const videoData = [
         large: "./assets/thumbnails/dogs/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996707/dogs_bbvxmw.mp4",
     year: 2016,
     category: "TV Series",
     rating: "E",
@@ -407,6 +457,8 @@ export const videoData = [
         large: "./assets/thumbnails/asia-in-24-days/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692997063/asia_in_24_days_2_qzjkkf.mp4",
     year: 2020,
     category: "TV Series",
     rating: "PG",
@@ -422,6 +474,8 @@ export const videoData = [
         large: "./assets/thumbnails/the-tasty-tour/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996963/the_tasty_tour_pk9mu4.mp4",
     year: 2016,
     category: "TV Series",
     rating: "PG",
@@ -437,6 +491,8 @@ export const videoData = [
         large: "./assets/thumbnails/darker/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996968/darker_bjjjs6.mp4",
     year: 2017,
     category: "Movie",
     rating: "18+",
@@ -452,6 +508,8 @@ export const videoData = [
         large: "./assets/thumbnails/unresolved-cases/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692997186/unresolved_cases_galr7g.mp4",
     year: 2018,
     category: "TV Series",
     rating: "18+",
@@ -467,6 +525,8 @@ export const videoData = [
         large: "./assets/thumbnails/mission-saturn/regular/large.jpg",
       },
     },
+    video:
+      "https://res.cloudinary.com/dge8nwzaw/video/upload/v1692996899/mission_saturn_b2thym.mp4",
     year: 2017,
     category: "Movie",
     rating: "PG",
