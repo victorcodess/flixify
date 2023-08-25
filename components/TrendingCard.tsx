@@ -4,7 +4,7 @@ import Image from "next/image";
 import { videoProps } from "@/utils/videoData";
 import play from "../public/assets/Group 3.png";
 import convertPath from "@/utils/convertPath";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { VideoContext, VideoContextInterface } from "@/context/VideoContext";
 
 const TrendingCard = ({
@@ -16,8 +16,7 @@ const TrendingCard = ({
   isBookmarked,
 }: videoProps) => {
   const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
-  // const [click, setClick] = useState(false);
-  // console.log(click);
+  const [hover, setHover] = useState(false);
 
   const handleClick = () => {
     const index: number = videos.findIndex((video) => title === video.title);
@@ -34,19 +33,38 @@ const TrendingCard = ({
     localStorage.setItem("videos", JSON.stringify(videos));
   });
 
+  const vidRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (hover) {
+      if (vidRef.current) {
+        vidRef.current.play();
+      }
+    } else {
+      if (vidRef.current) {
+        // vidRef.current.pause();
+        vidRef.current.currentTime = 0;
+      }
+    }
+  }, [hover]);
+
   return (
-    <div className="trending relative flex-shrink-0 w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] h-[140px] pb-0">
-      <div className="z-10 opacity-0 play  lg:block absolute bg-black/70  h-[140px] w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] rounded-lg">
+    <div
+      className="trending relative flex-shrink-0 w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] h-[140px] pb-0"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <div className="z-20 opacity-0 hidden play lg:block absolute bg-black/70  h-[140px] w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] rounded-lg">
         <Image
           src={play}
           alt="Play Icon"
           className="rounded-lg cursor-pointer left-0 right-0 top-0 bottom-0 mx-auto my-auto absolute w-[117px]"
-          // onClick={() => setClick(true)}
+          // onClick={() => vidRef.current.play()}
         />
-      </div>{" "}
-      <div className="absolute opacity-70 rounded-lg h-[140px] w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] bg-gradient-to-t from-black to-transparent"></div>
+      </div>
+
       <div
-        className="absolute z-10 cursor-pointer top-2 right-2 sm:top-4 sm:right-8 sm:w-[32px] lg:right-6 group"
+        className="absolute z-20 cursor-pointer top-2 right-2 sm:top-4 sm:right-8 sm:w-[32px] lg:right-6 group"
         onClick={handleClick}
       >
         <svg
@@ -83,16 +101,41 @@ const TrendingCard = ({
           </g>
         </svg>
       </div>
-      <div className="h-full w-full flex items-center justify-center">
+      <div className="h-full w-full flex items-center justify-center relative">
+        <div className="absolute z-10 opacity-70 rounded-lg h-[140px] w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] bg-gradient-to-t from-black to-transparent"></div>
         <Image
           src={convertPath(thumbnail.trending?.large ?? "")}
           width={1400}
           height={1400}
           alt={title}
-          className="h-full w-full rounded-lg bg-contain bg-center object-cover"
+          className={`h-full ${
+            hover ? "opacity-100 lg:opacity-0" : "opacity-100 lg:opacity-100"
+          } w-full rounded-lg bg-contain bg-center object-cover absolute`}
         />
+
+        <div className="opacity-0 hidden play lg:block absolute bg-black/70 h-[140px] w-[240px] sm:w-[400px] sm:h-[230px] lg:w-[470px] rounded-lg">
+          <video
+            // controls
+            ref={vidRef}
+            // autoPlay
+            loop
+            playsInline
+            muted
+            width={1080}
+            height={1080}
+            className={`h-full w-full ${
+              hover ? "opacity-0 lg:opacity-100" : "opacity-0 lg:opacity-100"
+            } rounded-lg bg-contain bg-center object-cover`}
+          >
+            <source
+              src="https://res.cloudinary.com/dge8nwzaw/video/upload/v1692910556/samples/elephants.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
       </div>
-      <div className="absolute items-start justify-center bottom-[16px] sm:bottom-6 sm:left-6 left-[16px] flex flex-col gap-1">
+
+      <div className="absolute z-10 items-start justify-center bottom-[16px] sm:bottom-6 sm:left-6 left-[16px] flex flex-col gap-1">
         <div className="flex justify-center items-center gap-2 text-white/70 text-[12px] sm:text-[15px] font-normal">
           <h5>{year}</h5>
           <svg
