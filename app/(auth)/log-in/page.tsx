@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import useErrorMsg from "../useErrorMsg";
+import useErrorMsg from "../_hooks/useErrorMsg";
 
 type FormValues = {
   email: string;

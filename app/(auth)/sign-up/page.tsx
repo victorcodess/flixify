@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import useErrorMsg from "../useErrorMsg";
+import useErrorMsg from "../_hooks/useErrorMsg";
 
 interface FormData {
   email: string;
