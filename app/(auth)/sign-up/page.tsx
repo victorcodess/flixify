@@ -56,7 +56,6 @@ const SignUp = () => {
         // Handle errors, show error messages, etc.
       }
     } catch (error) {
-      console.log('come here');
       console.error("Error occurred:", error);
       // Handle network errors or other exceptions
     }
