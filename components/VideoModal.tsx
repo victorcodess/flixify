@@ -8,16 +8,12 @@ const VideoModal = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (video) {
-      setOpen(true);
-    } else {
-      setOpen(false);
-    }
+    setOpen(video !== null);
   }, [video]);
 
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) =>
-      e.key === "Escape" ? setOpen(false) : null;
+      e.key === "Escape" && closeModal();
     document.body.addEventListener("keydown", closeOnEscapeKey);
     return () => {
       document.body.removeEventListener("keydown", closeOnEscapeKey);
@@ -26,12 +22,12 @@ const VideoModal = () => {
 
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
-    return (): void => {
+    return () => {
       document.body.style.overflow = "unset";
     };
-  });
+  }, [open]);
 
-  const handleClick = () => {
+  const closeModal = () => {
     setOpen(false);
     setVideo(null);
   };
@@ -46,7 +42,7 @@ const VideoModal = () => {
         className={`${
           open ? "opacity-100 block" : "opacity-0 hidden"
         } z-30 p-6 sm:p-8 bg-[#5A698F]/70 dark:bg-black/70 justify-center items-center fixed top-0 bottom-0 right-0 left-0 mx-auto my-auto`}
-        onClick={handleClick}
+        onClick={closeModal}
       ></div>
       <div
         className={`w-[400px] h-[400px] sm:w-[500px] sm:h-[500px] lg:w-[810px] lg:h-[600px] z-30 p-6 sm:p-8 bg-[#5A698F] dark:bg-[#161D2F] rounded-[10px] flex flex-col justify-center items-center absolute top-0 bottom-0 right-0 left-0 mx-auto my-auto`}

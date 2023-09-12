@@ -14,7 +14,7 @@ const handler = NextAuth({
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         // You need to provide your own logic here that takes the credentials
         // submitted and returns either a object representing a user or value
         // that is false/null if the credentials are invalid.
@@ -30,14 +30,15 @@ const handler = NextAuth({
           }),
           headers: { "Content-Type": "application/json" },
         });
-        const user = await res.json();
+        const resData = await res.json();
+
+        if (!res.ok) {
+          // Throw an error if response is not 200
+          throw new Error(resData.message);
+        }
 
         // If no error and we have user data, return it
-        if (res.ok && user) {
-          return user;
-        }
-        // Return null if user data could not be retrieved
-        return null;
+        return resData;
       },
     }),
   ],

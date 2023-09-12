@@ -11,8 +11,8 @@ interface Filter {
 }
 
 const Recommended = ({ filter }: Filter) => {
-  const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
-  const { video, setVideo }: ModalContextInterface = useContext(ModalContext);
+  const { videos }: VideoContextInterface = useContext(VideoContext);
+  const { setVideo }: ModalContextInterface = useContext(ModalContext);
 
   const filteredVideos = useMemo(() => {
     return videos.filter((video) => {

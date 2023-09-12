@@ -7,11 +7,11 @@ import {
   SetStateAction,
   ReactNode,
 } from "react";
-import { videoProps, videoData } from "@/utils/videoData";
+import { VideoProps, videoData } from "@/utils/videoData";
 
 export interface ModalContextInterface {
-  video: videoProps | null;
-  setVideo: Dispatch<SetStateAction<videoProps | null>>;
+  video: VideoProps | null;
+  setVideo: Dispatch<SetStateAction<VideoProps | null>>;
 }
 
 const defaultState: ModalContextInterface = {
@@ -26,7 +26,7 @@ type ModalProviderProps = {
 };
 
 export default function ModalProvider({ children }: ModalProviderProps) {
-  const [video, setVideo] = useState<videoProps | null>(null);
+  const [video, setVideo] = useState<VideoProps | null>(null);
 
   return (
     <ModalContext.Provider value={{ video, setVideo }}>

@@ -14,6 +14,8 @@ const SideBar = () => {
   let segment = useSelectedLayoutSegment();
   const [open, setOpen] = useState(false);
 
+  const toggleOpen = () => setOpen((prev) => !prev);
+
   return (
     <nav
       className={`${
@@ -75,7 +77,7 @@ const SideBar = () => {
         {open && (
           <div
             className="absolute w-[10000px] h-[10000px] bg-white opacity-0"
-            onClick={() => setOpen((prev) => !prev)}
+            onClick={toggleOpen}
           ></div>
         )}
         {!open && (
@@ -120,7 +122,7 @@ const SideBar = () => {
           alt="user"
           title="User"
           className="w-[24px] cursor-pointer sm:w-[32px] lg:w-[40px] border-2 border-white rounded-full"
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={toggleOpen}
         />
       </div>
     </nav>

@@ -1,10 +1,12 @@
 "use client";
 
 import ConfirmationUI from "@/components/ConfirmationUI";
+import { APIErrorResponse } from "@/lib/types/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import useErrorMsg from "../_hooks/useErrorMsg";
 
 interface FormData {
   email: string;
@@ -15,7 +17,7 @@ interface FormData {
 const SignUp = () => {
   const router = useRouter();
   const [confirm, setConfirm] = useState(false);
-  const [error, setError] = useState(false);
+  const {errorMsg, setErrorMsg, hasError} = useErrorMsg();
 
   const form = useForm<FormData>({
     defaultValues: {
@@ -48,9 +50,9 @@ const SignUp = () => {
         setConfirm(true);
         // Handle success or redirect to another page if needed
       } else {
+        const responseMsg = await response.json() as APIErrorResponse;
         console.error("Failed to create user.");
-
-        if (response.status === 500) setError(true);
+        setErrorMsg(responseMsg.message);
         // Handle errors, show error messages, etc.
       }
     } catch (error) {
@@ -69,24 +71,14 @@ const SignUp = () => {
     }
   }, [confirm, router]);
 
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => {
-        setError(false);
-      }, 2000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [error]);
-
   return (
     <div className="flex w-full h-[100vh] justify-center items-center">
       <div
         className={`${
-          error ? "opacity-100" : "opacity-0"
+          hasError ? "opacity-100" : "opacity-0"
         } dark:bg-[#FC4747] text-white focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-medium uppercase text-center absolute top-4 flex items-center justify-center text-[14px] sm:text-[16px]`}
       >
-        <h1>This account already exists</h1>
+        <h1>{errorMsg}</h1>
       </div>
 
       <div className="flex flex-col gap-[58.4px] sm:gap-[72.4px] lg:gap-[82.99px] justify-center items-center">

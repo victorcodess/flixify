@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import useErrorMsg from "../_hooks/useErrorMsg";
 
 type FormValues = {
   email: string;
@@ -12,6 +13,7 @@ type FormValues = {
 };
 
 const LogIn = () => {
+  const router = useRouter();
   const form = useForm<FormValues>({
     defaultValues: {
       email: "",
@@ -22,53 +24,43 @@ const LogIn = () => {
   const { register, handleSubmit, formState } = form;
   const { errors, touchedFields, dirtyFields, isDirty, isValid } = formState;
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(false);
+  const {
+    errorMsg,
+    setErrorMsg,
+    hasError,
+  } = useErrorMsg();
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     const username = data.email;
     const password = data.password;
 
-    signIn("credentials", {
-      username,
-      password,
-      redirect: true,
-      callbackUrl: "/",
-    });
-  };
+    try {
+      const response = await signIn("credentials", {
+        username,
+        password,
+        redirect: false,
+      });
+      const success = response?.error === null;
 
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const url = `${pathname}?${searchParams}`;
-
-    const getErrorValue = (url: string) => {
-      const params = new URLSearchParams(url);
-      return params.get("error");
-    };
-
-    const errorValue = getErrorValue(url);
-    if (errorValue === "CredentialsSignin") setError(true);
-  }, [pathname, searchParams]);
-
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => {
-        setError(false);
-      }, 2000);
-
-      return () => clearTimeout(timer);
+      if (success) {
+        router.push("/");
+      } else {
+        setErrorMsg(response?.error || '');
+        setSubmitting(false);
+      }
+    } catch (error) {
+      console.error("Error occurred:", error);
     }
-  }, [error]);
+  };
 
   return (
     <div className="flex w-full h-[100vh] justify-center items-center bg-[#E0E3EB] dark:bg-[#10141E]">
       <div
         className={`${
-          error ? "opacity-100" : "opacity-0"
+          hasError ? "opacity-100" : "opacity-0"
         } dark:bg-[#FC4747] text-white focus:outline-none rounded-[6px] w-[279px] sm:w-[336px] h-[48px] font-medium uppercase text-center absolute top-4 flex items-center justify-center text-[14px] sm:text-[16px]`}
       >
-        <h1>Incorrect password or email</h1>
+        <h1>{errorMsg}</h1>
       </div>
 
       <div className="flex flex-col gap-[58.4px] sm:gap-[72.4px] lg:gap-[82.99px] justify-center items-center">
