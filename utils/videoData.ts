@@ -4,7 +4,7 @@ interface Thumbnail {
   large: string;
 }
 
-export interface videoProps {
+export interface VideoProps {
   title: string;
   thumbnail: {
     trending?: Thumbnail;

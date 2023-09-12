@@ -1,6 +1,7 @@
 import { signJwtAccessToken } from "@/lib/jwt";
 import prisma from "@/lib/prisma";
 import * as bcrypt from "bcrypt";
+import { NextResponse } from "next/server";
 
 interface RequestBody {
   username: string;
@@ -23,5 +24,11 @@ export async function POST(request: Request) {
       accessToken,
     };
     return new Response(JSON.stringify(result));
-  } else return new Response(JSON.stringify(null));
+  } 
+  
+  return NextResponse.json({
+    message: 'Incorrect password or email'
+  }, {
+    status: 400,
+  });;
 }

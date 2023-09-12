@@ -8,15 +8,15 @@ import {
   SetStateAction,
   ReactNode,
 } from "react";
-import { videoProps, videoData } from "@/utils/videoData";
+import { VideoProps, videoData } from "@/utils/videoData";
 
 export interface VideoContextInterface {
-  videos: videoProps[]; // Update to an array of videoProps
-  setVideos: Dispatch<SetStateAction<videoProps[]>>; // Update to work with the array
+  videos: VideoProps[]; // Update to an array of VideoProps
+  setVideos: Dispatch<SetStateAction<VideoProps[]>>; // Update to work with the array
 }
 
 const defaultState: VideoContextInterface = {
-  videos: videoData, // Make sure videoData is an array of videoProps
+  videos: videoData, // Make sure videoData is an array of VideoProps
   setVideos: () => {},
 };
 
@@ -32,7 +32,7 @@ type VideoProviderProps = {
 // };
 
 export default function VideoProvider({ children }: VideoProviderProps) {
-  const [videos, setVideos] = useState<videoProps[]>(videoData); // Update the type to an array of videoProps
+  const [videos, setVideos] = useState<VideoProps[]>(videoData); // Update the type to an array of videoProps
 
   useEffect(() => {
     const getInitialState = () => {

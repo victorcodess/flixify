@@ -10,8 +10,8 @@ interface Filter {
 }
 
 const Trending = ({ filter }: Filter) => {
-  const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
-  const { video, setVideo }: ModalContextInterface = useContext(ModalContext);
+  const { videos }: VideoContextInterface = useContext(VideoContext);
+  const { setVideo }: ModalContextInterface = useContext(ModalContext);
 
   return (
     <>
@@ -22,7 +22,7 @@ const Trending = ({ filter }: Filter) => {
           </h1>
           <div className="flex gap-4 sm:gap-10 items-center justify-start w-full overflow-x-scroll sm:h-[250px] h-[160px]">
             {videos
-              .filter((video) => video.isTrending == true)
+              .filter((video) => video.isTrending)
               .map((video, index) => {
                 return (
                   <TrendingCard

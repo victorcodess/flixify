@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { videoProps } from "@/utils/videoData";
+import { VideoProps } from "@/utils/videoData";
 import play from "../public/assets/Group 3.png";
 import convertPath from "@/utils/convertPath";
 import { useContext, useEffect, useState } from "react";
@@ -16,18 +16,14 @@ const RegularCard = ({
   rating,
   isBookmarked,
   onClick,
-}: videoProps) => {
+}: VideoProps) => {
   const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
-  const { video, setVideo }: ModalContextInterface = useContext(ModalContext);
+  const { video }: ModalContextInterface = useContext(ModalContext);
 
   const [clicked, setclicked] = useState(false);
 
   useEffect(() => {
-    if (video?.title === title) {
-      setclicked(true);
-    } else {
-      setclicked(false);
-    }
+    setclicked(video?.title === title);
   }, [video?.title, title]);
 
   const handleClick = () => {
@@ -45,7 +41,7 @@ const RegularCard = ({
   }, [videos]);
 
   return (
-    <div className=" relative flex-shrink-0 w-[100%]">
+    <div className="relative flex-shrink-0 w-[100%]">
       <div className="regular h-[110px] w-full sm:h-[140px] lg:h-[174px]">
         <div className="z-10 opacity-0 play hidden lg:block absolute bg-black/80 rounded-lg  w-full h-[110px] sm:h-[140px] lg:h-[174px]">
           <Image
@@ -79,7 +75,7 @@ const RegularCard = ({
             <path
               d="M23.0147 16.2292L12.6912 22.1895C12.5147 22.2914 12.2941 22.1641 12.2941 21.9603L12.2941 10.0397C12.2941 9.83594 12.5147 9.70858 12.6912 9.81047L23.0147 15.7708C23.1912 15.8726 23.1912 16.1274 23.0147 16.2292Z"
               stroke="white"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               className={`${
                 clicked
                   ? "text-white group-hover:stroke-black group-hover:text-black"

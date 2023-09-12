@@ -7,14 +7,15 @@ import { VideoContext, VideoContextInterface } from "@/context/VideoContext";
 import { ModalContext, ModalContextInterface } from "@/context/ModalContext";
 
 export default function Home() {
-  const { videos, setVideos }: VideoContextInterface = useContext(VideoContext);
-  const { video, setVideo }: ModalContextInterface = useContext(ModalContext);
+  const { videos }: VideoContextInterface = useContext(VideoContext);
+  const { setVideo }: ModalContextInterface = useContext(ModalContext);
 
   const [filter, setFilter] = useState("");
 
   const filteredVideos = useMemo(() => {
+    const lowerCaseFilter = filter.toLowerCase();
+    
     return videos.filter((video) => {
-      const lowerCaseFilter = filter.toLowerCase();
       return (
         video.category === "Movie" &&
         (lowerCaseFilter === "" ||
@@ -32,7 +33,7 @@ export default function Home() {
 
         <div className="flex flex-col items-start justify-center w-full gap-[16px] sm:gap-[25px] mt-[24px] mb-[61px] sm:mt-[34px] px-5">
           <h1 className="dark:text-white text-[#10141E] text-[20px] sm:text-[32px] font-light">
-            {filter.toLowerCase() === ""
+            {filter === ""
               ? "Movies"
               : `Found ${number} ${
                   number === 1 ? "result" : "results"
